@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "rotation_window_runs": 7,
+  "avoid_consecutive_opening_class": true,
+  "angles": [
+    {
+      "id": "01",
+      "family": "baseline_deviations",
+      "opening_class": "entity_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "maxPositiveDelta_gte": 0.3 },
+      "headline_skeleton": "[Entity] Posts [Delta] Surge to Hold Top Spot",
+      "lede_rule": "Sentence 1 states the lead movement and score; Sentence 2 compares against the nearest challenger."
+    },
+    {
+      "id": "02",
+      "family": "baseline_deviations",
+      "opening_class": "metric_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "maxNegativeDelta_lte": -0.5 },
+      "headline_skeleton": "[Delta] Dip Tests [Entity] Amid Shifting Standings",
+      "lede_rule": "Sentence 1 reports the drop; Sentence 2 notes the effect on top-tier separation."
+    },
+    {
+      "id": "03",
+      "family": "baseline_deviations",
+      "opening_class": "streak_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "creepStreakDays_gte": 2 },
+      "headline_skeleton": "Multi-Day Climb Lifts [Entity] Into Primary Spotlight",
+      "lede_rule": "Sentence 1 highlights sustained momentum; Sentence 2 contextualizes the current standing."
+    },
+    {
+      "id": "04",
+      "family": "tier_shifts",
+      "opening_class": "contrast_first",
+      "verticals": ["footballtally", "governancescore", "policingintel"],
+      "condition": { "hasPrimarySecondarySplit": true },
+      "headline_skeleton": "[PrimaryLeader] Tops Primary Tally While [SecondaryLeader] Leads Secondary",
+      "lede_rule": "Sentence 1 contrasts the two metric leaders; Sentence 2 explains what separates the rankings."
+    },
+    {
+      "id": "05",
+      "family": "tier_shifts",
+      "opening_class": "spread_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "hasTierCrossover": true },
+      "headline_skeleton": "Gap Widens Across Top Tier as [Entity] Sets Pace",
+      "lede_rule": "Sentence 1 captures the top-tier spread; Sentence 2 identifies the key movers."
+    },
+    {
+      "id": "06",
+      "family": "tier_shifts",
+      "opening_class": "entity_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "isTopMarginTight": true },
+      "headline_skeleton": "[Entity] Edges Narrow Lead in Tight Top-Three Race",
+      "lede_rule": "Sentence 1 highlights the razor-thin margin; Sentence 2 outlines the immediate challengers."
+    },
+    {
+      "id": "07",
+      "family": "tier_shifts",
+      "opening_class": "tail_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "hasBottomTierDrag": true },
+      "headline_skeleton": "Lower-Tier Pressure Persists as [Entity] Stays Ahead",
+      "lede_rule": "Sentence 1 contrasts frontrunners with lower-tier lag; Sentence 2 summarizes the table split."
+    },
+    {
+      "id": "08",
+      "family": "execution_momentum",
+      "opening_class": "milestone_first",
+      "verticals": ["footballtally", "governancescore", "policingintel"],
+      "condition": { "hasExecutionOrSweepMilestone": true },
+      "headline_skeleton": "Clean Execution Propels [Entity] Through Latest Slate",
+      "lede_rule": "Sentence 1 notes the strong execution mark; Sentence 2 connects it to current standings."
+    },
+    {
+      "id": "09",
+      "family": "execution_momentum",
+      "opening_class": "metric_first",
+      "verticals": ["footballtally"],
+      "condition": { "hasInverseDivergence": true },
+      "headline_skeleton": "Two-Half DFT vs. Full-Time Table Diverges Across League Slate",
+      "lede_rule": "Sentence 1 explains where DFT and STD diverge; Sentence 2 names the clubs setting the pace."
+    },
+    {
+      "id": "10",
+      "family": "execution_momentum",
+      "opening_class": "entity_first",
+      "verticals": ["governancescore", "footballtally", "policingintel"],
+      "condition": { "leaderStreakRuns_gte": 1 },
+      "headline_skeleton": "[Entity] Maintains Lead Position After Latest Cycle",
+      "lede_rule": "Sentence 1 states the ongoing lead; Sentence 2 points to what comes next in the cycle."
+    }
+  ]
+}
