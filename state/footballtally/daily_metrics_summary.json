@@ -7,7 +7,12 @@
   "active_league_code": "PL",
   "active_league_name": "Premier League",
   "top_primary_entity": "Brighton Hove",
-  "top_primary_score": 14,
+  "top_primary_score": 15,
+  "top_weak_points_club": "Arsenal",
+  "maxWeakPoints": 14,
+  "lowest_weak_points_club": "Bournemouth",
+  "minWeakPoints": 2,
+  "hasWeakPointsDivergence": true,
   "maxPositiveDelta": 3,
   "maxNegativeDelta": 0,
   "flatTopWatchCount": 0,
@@ -36,20 +41,23 @@
       {
         "club": "Brighton Hove",
         "code": "BRI",
-        "dft_pts": 14,
-        "std_pts": 22
+        "dft_pts": 15,
+        "std_pts": 22,
+        "weak_points": 7
       },
       {
         "club": "Arsenal",
         "code": "ARS",
         "dft_pts": 13,
-        "std_pts": 27
+        "std_pts": 27,
+        "weak_points": 14
       },
       {
         "club": "Bournemouth",
         "code": "BOU",
-        "dft_pts": 12,
-        "std_pts": 15
+        "dft_pts": 13,
+        "std_pts": 15,
+        "weak_points": 2
       }
     ],
     "dft_bottom3": [
@@ -57,19 +65,22 @@
         "club": "Sunderland",
         "code": "SUN",
         "dft_pts": 2,
-        "std_pts": 8
+        "std_pts": 8,
+        "weak_points": 6
       },
       {
         "club": "Man United",
         "code": "MAN",
         "dft_pts": 2,
-        "std_pts": 8
+        "std_pts": 8,
+        "weak_points": 6
       },
       {
         "club": "Nottingham",
         "code": "NOT",
         "dft_pts": 3,
-        "std_pts": 9
+        "std_pts": 9,
+        "weak_points": 6
       }
     ],
     "std_top3": [
@@ -77,19 +88,22 @@
         "club": "Arsenal",
         "code": "ARS",
         "dft_pts": 13,
-        "std_pts": 27
+        "std_pts": 27,
+        "weak_points": 14
       },
       {
         "club": "Brighton Hove",
         "code": "BRI",
-        "dft_pts": 14,
-        "std_pts": 22
+        "dft_pts": 15,
+        "std_pts": 22,
+        "weak_points": 7
       },
       {
         "club": "Man City",
         "code": "MAN",
-        "dft_pts": 10,
-        "std_pts": 21
+        "dft_pts": 11,
+        "std_pts": 21,
+        "weak_points": 10
       }
     ],
     "std_bottom3": [
@@ -97,19 +111,68 @@
         "club": "Crystal Palace",
         "code": "CRY",
         "dft_pts": 4,
-        "std_pts": 7
+        "std_pts": 7,
+        "weak_points": 3
       },
       {
         "club": "Sunderland",
         "code": "SUN",
         "dft_pts": 2,
-        "std_pts": 8
+        "std_pts": 8,
+        "weak_points": 6
       },
       {
         "club": "Man United",
         "code": "MAN",
         "dft_pts": 2,
-        "std_pts": 8
+        "std_pts": 8,
+        "weak_points": 6
+      }
+    ],
+    "weak_points_top3": [
+      {
+        "club": "Arsenal",
+        "code": "ARS",
+        "dft_pts": 13,
+        "std_pts": 27,
+        "weak_points": 14
+      },
+      {
+        "club": "Man City",
+        "code": "MAN",
+        "dft_pts": 11,
+        "std_pts": 21,
+        "weak_points": 10
+      },
+      {
+        "club": "Liverpool",
+        "code": "LIV",
+        "dft_pts": 9,
+        "std_pts": 18,
+        "weak_points": 9
+      }
+    ],
+    "weak_points_bottom3": [
+      {
+        "club": "Bournemouth",
+        "code": "BOU",
+        "dft_pts": 13,
+        "std_pts": 15,
+        "weak_points": 2
+      },
+      {
+        "club": "Crystal Palace",
+        "code": "CRY",
+        "dft_pts": 4,
+        "std_pts": 7,
+        "weak_points": 3
+      },
+      {
+        "club": "Brentford",
+        "code": "BRE",
+        "dft_pts": 10,
+        "std_pts": 14,
+        "weak_points": 4
       }
     ]
   },
@@ -118,65 +181,97 @@
       "code": "BL1",
       "name": "Bundesliga",
       "dft_leader": "RB Leipzig",
-      "dft_leader_pts": 15,
+      "dft_leader_pts": 16,
       "std_leader": "Bayern",
-      "std_leader_pts": 21
+      "std_leader_pts": 21,
+      "top_weak_points_club": "Dortmund",
+      "top_weak_points": 12,
+      "lowest_weak_points_club": "Augsburg",
+      "lowest_weak_points": 0
     },
     {
       "code": "BSA",
       "name": "Campeonato Brasileiro Serie A",
       "dft_leader": "Flamengo",
-      "dft_leader_pts": 47,
+      "dft_leader_pts": 52,
       "std_leader": "Flamengo",
-      "std_leader_pts": 79
+      "std_leader_pts": 79,
+      "top_weak_points_club": "Cruzeiro",
+      "top_weak_points": 37,
+      "lowest_weak_points_club": "Internacional",
+      "lowest_weak_points": 12
     },
     {
       "code": "DED",
       "name": "Eredivisie",
       "dft_leader": "PSV",
-      "dft_leader_pts": 23,
+      "dft_leader_pts": 26,
       "std_leader": "PSV",
-      "std_leader_pts": 26
+      "std_leader_pts": 26,
+      "top_weak_points_club": "Sittard",
+      "top_weak_points": 12,
+      "lowest_weak_points_club": "PSV",
+      "lowest_weak_points": 0
     },
     {
       "code": "FL1",
       "name": "Ligue 1",
       "dft_leader": "PSG",
-      "dft_leader_pts": 13,
+      "dft_leader_pts": 14,
       "std_leader": "PSG",
-      "std_leader_pts": 23
+      "std_leader_pts": 23,
+      "top_weak_points_club": "Paris FC",
+      "top_weak_points": 11,
+      "lowest_weak_points_club": "Le Havre",
+      "lowest_weak_points": 1
     },
     {
       "code": "PD",
       "name": "La Liga",
       "dft_leader": "Barça",
-      "dft_leader_pts": 24,
+      "dft_leader_pts": 27,
       "std_leader": "Barça",
-      "std_leader_pts": 33
+      "std_leader_pts": 33,
+      "top_weak_points_club": "Atleti",
+      "top_weak_points": 15,
+      "lowest_weak_points_club": "Málaga",
+      "lowest_weak_points": 0
     },
     {
       "code": "PL",
       "name": "Premier League",
       "dft_leader": "Brighton Hove",
-      "dft_leader_pts": 14,
+      "dft_leader_pts": 15,
       "std_leader": "Arsenal",
-      "std_leader_pts": 27
+      "std_leader_pts": 27,
+      "top_weak_points_club": "Arsenal",
+      "top_weak_points": 14,
+      "lowest_weak_points_club": "Bournemouth",
+      "lowest_weak_points": 2
     },
     {
       "code": "PPL",
       "name": "Primeira Liga",
-      "dft_leader": "Porto",
-      "dft_leader_pts": 16,
+      "dft_leader": "SL Benfica",
+      "dft_leader_pts": 18,
       "std_leader": "Porto",
-      "std_leader_pts": 33
+      "std_leader_pts": 33,
+      "top_weak_points_club": "Porto",
+      "top_weak_points": 16,
+      "lowest_weak_points_club": "Estoril Praia",
+      "lowest_weak_points": 0
     },
     {
       "code": "SA",
       "name": "Serie A",
       "dft_leader": "Roma",
-      "dft_leader_pts": 18,
+      "dft_leader_pts": 20,
       "std_leader": "Lazio",
-      "std_leader_pts": 29
+      "std_leader_pts": 29,
+      "top_weak_points_club": "Inter",
+      "top_weak_points": 18,
+      "lowest_weak_points_club": "Monza",
+      "lowest_weak_points": 0
     }
   ]
 }
