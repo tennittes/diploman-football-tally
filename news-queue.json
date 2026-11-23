@@ -2,6 +2,41 @@
   "newsReports": [
     {
       "type": "scored_brief",
+      "id": "scored-ftb-2026-11-20-07",
+      "published": false,
+      "target_url": "https://www.diplomantimes.com",
+      "vertical": "footballtally",
+      "source_domain": "https://footballtally.diplomantimes.com/",
+      "angle_id": "07",
+      "angle_family": "tier_shifts",
+      "opening_class": "tail_first",
+      "headline_skeleton": "Lower-Tier Pressure Persists as [Entity] Stays Ahead",
+      "lede_rule": "Sentence 1 contrasts frontrunners with lower-tier lag; Sentence 2 summarizes the table split.",
+      "title": "Lower-Tier Pressure Persists on Sunderland (2 Pts) as Brighton Hove Stays Ahead on 14 DFT Pts",
+      "summary": "Sunderland sits at the bottom of the Premier League (PL) two-half table on 2 points as of 2026-11-20 UTC, while Brighton Hove maintains the top spot on 14 points. Across the wider Premier League table split, Arsenal holds first place on the standard full-time standings with 27 points.",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Football Tally",
+        "PL",
+        "Angle 07"
+      ],
+      "featured_image": {
+        "src": "",
+        "alt": "Premier League Football Tally Standings",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "Sunderland sits at the bottom of the Premier League (PL) two-half table on 2 points as of 2026-11-20 UTC, while Brighton Hove maintains the top spot on 14 points. Across the wider Premier League table split, Arsenal holds first place on the standard full-time standings with 27 points.",
+      "story_body": [
+        "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (14 pts), 2. Arsenal (13 pts), and 3. Bournemouth (12 pts). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 2 points.",
+        "The standard full-time standings present a contrasting picture, led by Arsenal (27 pts), Brighton Hove (22 pts), and Man City (21 pts). Arsenal stays 5 points clear of Brighton Hove in full-time points, showing how clubs that close out full matches can hold higher standard totals even when half-by-half tallies distribute points differently.",
+        "At the opposite end of the Premier League two-half table, Sunderland (2 pts), Man United (2 pts), and Nottingham (3 pts) sit under sustained points pressure, while Crystal Palace (7 pts), Sunderland (8 pts), and Man United (8 pts) occupy the lower full-time spots.",
+        "Across other tracked top-flight competitions on 2026-11-20 UTC, table leaders include Bundesliga (RB Leipzig on 15 two-half pts; Bayern on 21 full-time pts), Campeonato Brasileiro Serie A (Flamengo on 47 two-half pts; Flamengo on 79 full-time pts), Eredivisie (PSV on 23 two-half pts; PSV on 26 full-time pts), Ligue 1 (PSG on 13 two-half pts; PSG on 23 full-time pts), La Liga (Barça on 24 two-half pts; Barça on 33 full-time pts), Primeira Liga (Porto on 16 two-half pts; Porto on 33 full-time pts), and Serie A (Roma on 18 two-half pts; Lazio on 29 full-time pts)."
+      ],
+      "queued_at_utc": "2026-11-23T12:56:01.591Z"
+    },
+    {
+      "type": "scored_brief",
       "id": "scored-ftb-2026-11-20-08",
       "published": false,
       "target_url": "https://www.diplomantimes.com",
@@ -34,41 +69,6 @@
         "Each DFT fixture awards 1 point per half won plus a 1-point bonus for sweeping both halves across tracked top-flight competitions."
       ],
       "queued_at_utc": "2026-11-23T12:40:52.187Z"
-    },
-    {
-      "type": "scored_brief",
-      "id": "scored-ftb-2026-11-20-07",
-      "published": false,
-      "target_url": "https://www.diplomantimes.com",
-      "vertical": "footballtally",
-      "source_domain": "https://footballtally.diplomantimes.com/",
-      "angle_id": "07",
-      "angle_family": "tier_shifts",
-      "opening_class": "tail_first",
-      "headline_skeleton": "Lower-Tier Pressure Persists as [Entity] Stays Ahead",
-      "lede_rule": "Sentence 1 contrasts frontrunners with lower-tier lag; Sentence 2 summarizes the table split.",
-      "title": "Brighton Hove Leads Premier League DFT Tally on 14 Pts as Arsenal Tops Full-Time Table (27 Pts)",
-      "summary": "Brighton Hove holds the Diploman Football Tally (DFT) lead in Premier League (PL) with 14 two-half points as of 2026-11-20 UTC, while Arsenal leads the standard full-time table on 27 points.",
-      "labels": [
-        "News Report",
-        "Diploman Times",
-        "Football Tally",
-        "PL",
-        "Angle 07"
-      ],
-      "featured_image": {
-        "src": "",
-        "alt": "Premier League Diploman Football Tally Standings",
-        "target_url": "https://www.diplomantimes.com"
-      },
-      "lead_narrative": "Brighton Hove holds the Diploman Football Tally (DFT) lead in Premier League (PL) with 14 two-half points as of 2026-11-20 UTC, while Arsenal leads the standard full-time table on 27 points.",
-      "editorial_notice": "This Scored Intelligence Brief translates two-half Diploman Football Tally (DFT) and standard full-time (STD) match telemetry into verified coverage for Diploman Times.",
-      "story_body": [
-        "Structured under Angle 07 (tier_shifts), Premier League (PL) telemetry places Brighton Hove atop the two-half DFT table on 14 points.",
-        "On the standard full-time (3-1-0) table, Arsenal holds first place on 27 points, highlighting divergence between half-by-half control and full-time outcomes.",
-        "Each DFT fixture awards 1 point per half won plus a 1-point bonus for sweeping both halves across tracked top-flight competitions."
-      ],
-      "queued_at_utc": "2026-11-23T12:33:35.589Z"
     },
     {
       "type": "scored_brief",

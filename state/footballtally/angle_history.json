@@ -5,9 +5,9 @@
     {
       "run_date_utc": "2026-11-20",
       "vertical": "footballtally",
-      "angle_id": "08",
-      "family": "execution_momentum",
-      "opening_class": "milestone_first"
+      "angle_id": "07",
+      "family": "tier_shifts",
+      "opening_class": "tail_first"
     }
   ]
 }
