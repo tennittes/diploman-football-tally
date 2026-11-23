@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "vertical": "footballtally",
+  "display_name": "Diploman Football Tally",
+  "domain": "https://footballtally.diplomantimes.com/",
+  "brand_colors": {
+    "primary": "#0F172A",
+    "secondary": "#2563EB",
+    "accent": "#60A5FA"
+  },
+  "timezone": "UTC",
+  "rollover": {
+    "weekly_reset_day_utc": 4,
+    "weekly_reset_hour_utc": 0,
+    "progressive_window_days": 5
+  },
+  "coverage": {
+    "scope_type": "leagues",
+    "expected_count": 8,
+    "leagues": [
+      { "code": "PL", "name": "Premier League" },
+      { "code": "LL", "name": "La Liga" },
+      { "code": "SA", "name": "Serie A" },
+      { "code": "BL", "name": "Bundesliga" },
+      { "code": "L1", "name": "Ligue 1" },
+      { "code": "UCL", "name": "UEFA Champions League" },
+      { "code": "UEL", "name": "UEFA Europa League" },
+      { "code": "NPFL", "name": "Nigeria Premier Football League" }
+    ]
+  },
+  "metrics": {
+    "primary": {
+      "key": "DFT",
+      "label": "Diploman Football Tally",
+      "polarity": "higher_is_stronger",
+      "scoring_rules": {
+        "half_win": 1,
+        "half_draw": 0,
+        "half_loss": 0,
+        "two_half_sweep_bonus": 1,
+        "max_match_points": 3
+      }
+    },
+    "secondary": {
+      "key": "STD",
+      "label": "Standard Full-Time Points",
+      "polarity": "higher_is_stronger",
+      "scoring_rules": {
+        "win": 3,
+        "draw": 1,
+        "loss": 0
+      }
+    }
+  },
+  "required_summary_fields": [
+    "run_date_utc",
+    "vertical",
+    "active_league_code",
+    "top_primary_entity",
+    "top_primary_score",
+    "hasPrimarySecondarySplit"
+  ]
+}
