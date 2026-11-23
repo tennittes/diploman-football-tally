@@ -4,12 +4,12 @@
   "vertical": "footballtally",
   "domain": "https://footballtally.diplomantimes.com/",
   "is_thursday_rollover": false,
-  "selected_angle_id": "07",
-  "family": "tier_shifts",
-  "opening_class": "tail_first",
-  "headline_skeleton": "Lower-Tier Pressure Persists as [Entity] Stays Ahead",
-  "lede_rule": "Sentence 1 contrasts frontrunners with lower-tier lag; Sentence 2 summarizes the table split.",
+  "selected_angle_id": "08",
+  "family": "execution_momentum",
+  "opening_class": "milestone_first",
+  "headline_skeleton": "Clean Execution Propels [Entity] Through Latest Slate",
+  "lede_rule": "Sentence 1 notes the strong execution mark; Sentence 2 connects it to current standings.",
   "excluded_recent_ids": [
-    "09"
+    "07"
   ]
 }

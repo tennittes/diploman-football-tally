@@ -2,6 +2,41 @@
   "newsReports": [
     {
       "type": "scored_brief",
+      "id": "scored-ftb-2026-11-20-08",
+      "published": false,
+      "target_url": "https://www.diplomantimes.com",
+      "vertical": "footballtally",
+      "source_domain": "https://footballtally.diplomantimes.com/",
+      "angle_id": "08",
+      "angle_family": "execution_momentum",
+      "opening_class": "milestone_first",
+      "headline_skeleton": "Clean Execution Propels [Entity] Through Latest Slate",
+      "lede_rule": "Sentence 1 notes the strong execution mark; Sentence 2 connects it to current standings.",
+      "title": "Brighton Hove Holds Premier League DFT Lead on 14 Pts Ahead of Arsenal (13 Pts)",
+      "summary": "Brighton Hove leads the Premier League (PL) Diploman Football Tally on 14 two-half points ahead of Arsenal (13 pts) as of 2026-11-20 UTC, while Arsenal tops the standard full-time table on 27 points.",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Football Tally",
+        "PL",
+        "Angle 08"
+      ],
+      "featured_image": {
+        "src": "",
+        "alt": "Premier League Diploman Football Tally Standings",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "Brighton Hove leads the Premier League (PL) Diploman Football Tally on 14 two-half points ahead of Arsenal (13 pts) as of 2026-11-20 UTC, while Arsenal tops the standard full-time table on 27 points.",
+      "editorial_notice": "This Scored Intelligence Brief translates two-half Diploman Football Tally (DFT) and standard full-time (STD) match telemetry into verified coverage for Diploman Times.",
+      "story_body": [
+        "Structured under Angle 08 (execution_momentum), Premier League (PL) telemetry places Brighton Hove atop the two-half DFT table on 14 points.",
+        "On the standard full-time (3-1-0) table, Arsenal holds first place on 27 points, highlighting divergence between half-by-half control and full-time outcomes.",
+        "Each DFT fixture awards 1 point per half won plus a 1-point bonus for sweeping both halves across tracked top-flight competitions."
+      ],
+      "queued_at_utc": "2026-11-23T12:40:52.187Z"
+    },
+    {
+      "type": "scored_brief",
       "id": "scored-ftb-2026-11-20-07",
       "published": false,
       "target_url": "https://www.diplomantimes.com",
