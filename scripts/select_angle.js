@@ -1,0 +1,169 @@
+// scripts/select_angle.js — Selects Daily Angle From 25-Angle Matrix With Anti-Repetition
+const fs = require("fs");
+const path = require("path");
+const { resolveContractPath } = require("./validate_inputs");
+
+function loadJson(filePath, fallback) {
+  if (!fs.existsSync(filePath)) return fallback;
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function saveJson(filePath, data) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf8");
+}
+
+function isThursdayUtc(dateStr) {
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.getUTCDay() === 4;
+}
+
+function evaluateCondition(cond, m) {
+  if (!cond || typeof cond !== "object") return true;
+
+  for (const [key, expected] of Object.entries(cond)) {
+    if (key === "maxPositiveDelta_gte") {
+      if (Number(m.maxPositiveDelta || 0) < Number(expected)) return false;
+    } else if (key === "maxNegativeDelta_lte") {
+      if (Number(m.maxNegativeDelta || 0) > Number(expected)) return false;
+    } else if (key === "flatTopWatchCount_gte") {
+      if (Number(m.flatTopWatchCount || 0) < Number(expected)) return false;
+    } else if (key === "creepStreakDays_gte") {
+      if (Number(m.creepStreakDays || 0) < Number(expected)) return false;
+    } else if (key === "maxZoneClusterCount_gte") {
+      if (Number(m.maxZoneClusterCount || 0) < Number(expected)) return false;
+    } else if (key === "leaderStreakRuns_gte") {
+      if (Number(m.leaderStreakRuns || 0) < Number(expected)) return false;
+    } else {
+      if (Boolean(m[key]) !== Boolean(expected)) return false;
+    }
+  }
+  return true;
+}
+
+function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, historyPath, contractPath }) {
+  const contract = loadJson(contractPath, { domain: "https://www.diplomantimes.com/" });
+  const anglesDoc = loadJson(anglesPath, { angles: [] });
+  const allAngles = Array.isArray(anglesDoc.angles) ? anglesDoc.angles : [];
+  const metrics = loadJson(metricsPath, {});
+  const historyDoc = loadJson(historyPath, { entries: [] });
+  const historyEntries = Array.isArray(historyDoc.entries) ? historyDoc.entries : [];
+
+  const isThursday = isThursdayUtc(runDateUtc);
+  const recentEntries = historyEntries.slice(-7);
+  const recentIds = new Set(recentEntries.map((e) => e.angle_id));
+  const lastEntry = historyEntries.length ? historyEntries[historyEntries.length - 1] : null;
+  const lastOpeningClass = lastEntry ? lastEntry.opening_class : null;
+
+  const eligibleForVertical = allAngles.filter(
+    (a) => Array.isArray(a.verticals) && a.verticals.includes(vertical)
+  );
+
+  // 1. Prefer angles matching current telemetry conditions, not used in last 7 runs, and not repeating last opening_class
+  let candidates = eligibleForVertical.filter(
+    (a) =>
+      !recentIds.has(a.id) &&
+      (!lastOpeningClass || a.opening_class !== lastOpeningClass) &&
+      evaluateCondition(a.condition, metrics)
+  );
+
+  // 2. Relax opening_class constraint if needed while keeping 7-run cooldown and condition match
+  if (candidates.length === 0) {
+    candidates = eligibleForVertical.filter(
+      (a) => !recentIds.has(a.id) && evaluateCondition(a.condition, metrics)
+    );
+  }
+
+  // 3. Relax condition match while respecting 7-run cooldown
+  if (candidates.length === 0) {
+    candidates = eligibleForVertical.filter((a) => !recentIds.has(a.id));
+  }
+
+  // 4. Final fallback across all vertical angles
+  if (candidates.length === 0) {
+    candidates = eligibleForVertical;
+  }
+
+  if (candidates.length === 0) {
+    throw new Error(`No angles configured for vertical "${vertical}" in ${anglesPath}`);
+  }
+
+  // Deterministic tie-breaker based on date + vertical so reruns on the same date are stable
+  const seedStr = `${runDateUtc}:${vertical}`;
+  let hash = 0;
+  for (let i = 0; i < seedStr.length; i++) {
+    hash = (hash * 31 + seedStr.charCodeAt(i)) >>> 0;
+  }
+  const chosen = candidates[hash % candidates.length];
+
+  const selection = {
+    schema_version: "1.0.0",
+    run_date_utc: runDateUtc,
+    vertical,
+    domain: contract.domain || "https://www.diplomantimes.com/",
+    is_thursday_rollover: isThursday,
+    selected_angle_id: chosen.id,
+    family: chosen.family,
+    opening_class: chosen.opening_class,
+    headline_skeleton: chosen.headline_skeleton,
+    lede_rule: chosen.lede_rule,
+    excluded_recent_ids: Array.from(recentIds)
+  };
+
+  const nextEntries = historyEntries
+    .filter((e) => !(e.run_date_utc === runDateUtc && e.vertical === vertical))
+    .concat({
+      run_date_utc: runDateUtc,
+      vertical,
+      angle_id: chosen.id,
+      family: chosen.family,
+      opening_class: chosen.opening_class
+    })
+    .slice(-30);
+
+  return {
+    selection,
+    updatedHistory: {
+      schema_version: "1.0.0",
+      vertical,
+      entries: nextEntries
+    }
+  };
+}
+
+if (require.main === module) {
+  const args = process.argv.slice(2);
+  const getArg = (flag, def = "") => {
+    const idx = args.indexOf(flag);
+    return idx >= 0 && args[idx + 1] ? args[idx + 1] : def;
+  };
+
+  try {
+    const vertical = getArg("--vertical", "footballtally");
+    const runDateUtc = getArg("--date", new Date().toISOString().slice(0, 10));
+    const anglesPath = getArg("--angles", path.join("config", "angles-25-master.json"));
+    const metricsPath = getArg("--metrics", path.join("state", vertical, "daily_metrics_summary.json"));
+    const historyPath = getArg("--history", path.join("state", vertical, "angle_history.json"));
+    const outPath = getArg("--out", path.join("state", vertical, "latest_selection.json"));
+    const contractPath = resolveContractPath(vertical, getArg("--contract", ""));
+
+    const { selection, updatedHistory } = selectDailyAngle({
+      vertical,
+      runDateUtc,
+      anglesPath,
+      metricsPath,
+      historyPath,
+      contractPath
+    });
+
+    saveJson(outPath, selection);
+    saveJson(historyPath, updatedHistory);
+
+    console.log(JSON.stringify(selection, null, 2));
+  } catch (err) {
+    console.error(JSON.stringify({ status: "ERROR", message: err.message }, null, 2));
+    process.exit(1);
+  }
+}
+
+module.exports = { selectDailyAngle };
