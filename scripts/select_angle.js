@@ -34,6 +34,10 @@ function evaluateCondition(cond, m) {
       if (Number(m.maxZoneClusterCount || 0) < Number(expected)) return false;
     } else if (key === "leaderStreakRuns_gte") {
       if (Number(m.leaderStreakRuns || 0) < Number(expected)) return false;
+    } else if (key === "maxWeakPoints_gte") {
+      if (Number(m.maxWeakPoints || 0) < Number(expected)) return false;
+    } else if (key === "minWeakPoints_lte") {
+      if (Number(m.minWeakPoints || 0) > Number(expected)) return false;
     } else {
       if (Boolean(m[key]) !== Boolean(expected)) return false;
     }
@@ -107,6 +111,13 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
     opening_class: chosen.opening_class,
     headline_skeleton: chosen.headline_skeleton,
     lede_rule: chosen.lede_rule,
+    weak_points_context: {
+      has_divergence: Boolean(metrics.hasWeakPointsDivergence),
+      top_club: metrics.top_weak_points_club || null,
+      max_weak_points: Number(metrics.maxWeakPoints || 0),
+      lowest_club: metrics.lowest_weak_points_club || null,
+      min_weak_points: Number(metrics.minWeakPoints || 0)
+    },
     excluded_recent_ids: Array.from(recentIds)
   };
 
