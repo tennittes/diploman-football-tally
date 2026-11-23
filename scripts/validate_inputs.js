@@ -17,6 +17,10 @@ function resolveContractPath(vertical, explicitPath = "") {
   return map[vertical] || path.join("config", `${vertical}-contract.json`);
 }
 
+function isFiniteNum(val) {
+  return typeof val === "number" && Number.isFinite(val);
+}
+
 function validateInputs({ vertical, runDateUtc, metricsPath, contractPath }) {
   const errors = [];
   const contract = loadJson(contractPath);
@@ -64,11 +68,42 @@ function validateInputs({ vertical, runDateUtc, metricsPath, contractPath }) {
     }
   }
 
+  const leagues = Array.isArray(metrics.leagues) ? metrics.leagues : [];
   if (contract.coverage && contract.coverage.scope_type === "leagues") {
     const expectedLeagues = contract.coverage.expected_league_count || 8;
-    const leagues = Array.isArray(metrics.leagues) ? metrics.leagues : [];
     if (leagues.length !== expectedLeagues) {
       errors.push(`Expected ${expectedLeagues} leagues for ${vertical}, received ${leagues.length}.`);
+    }
+  }
+
+  if (vertical === "footballtally") {
+    if (metrics.maxWeakPoints !== undefined && !isFiniteNum(metrics.maxWeakPoints)) {
+      errors.push(`Invalid maxWeakPoints for ${vertical}: expected finite number, received ${metrics.maxWeakPoints}.`);
+    }
+    if (metrics.minWeakPoints !== undefined && !isFiniteNum(metrics.minWeakPoints)) {
+      errors.push(`Invalid minWeakPoints for ${vertical}: expected finite number, received ${metrics.minWeakPoints}.`);
+    }
+
+    for (const lg of leagues) {
+      if (lg.top_weak_points !== undefined && !isFiniteNum(lg.top_weak_points)) {
+        errors.push(`Invalid top_weak_points for league ${lg.code || "unknown"}: ${lg.top_weak_points}.`);
+      }
+      if (lg.lowest_weak_points !== undefined && !isFiniteNum(lg.lowest_weak_points)) {
+        errors.push(`Invalid lowest_weak_points for league ${lg.code || "unknown"}: ${lg.lowest_weak_points}.`);
+      }
+    }
+
+    const wpRules = contract.weak_points_rules;
+    if (wpRules && typeof wpRules === "object") {
+      if (wpRules.require_divergence_flag && typeof metrics.hasWeakPointsDivergence !== "boolean") {
+        errors.push(`Missing or non-boolean hasWeakPointsDivergence for ${vertical}.`);
+      }
+      if (isFiniteNum(wpRules.max_allowed) && isFiniteNum(metrics.maxWeakPoints) && metrics.maxWeakPoints > wpRules.max_allowed) {
+        errors.push(`maxWeakPoints (${metrics.maxWeakPoints}) exceeds contract max_allowed (${wpRules.max_allowed}).`);
+      }
+      if (isFiniteNum(wpRules.min_allowed) && isFiniteNum(metrics.minWeakPoints) && metrics.minWeakPoints < wpRules.min_allowed) {
+        errors.push(`minWeakPoints (${metrics.minWeakPoints}) below contract min_allowed (${wpRules.min_allowed}).`);
+      }
     }
   }
 
