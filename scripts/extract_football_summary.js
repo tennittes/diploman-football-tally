@@ -37,7 +37,8 @@ function computeLeagueStandingsFromMatches(matches) {
         club,
         code: String(club).slice(0, 3).toUpperCase(),
         dft_pts: 0,
-        std_pts: 0
+        std_pts: 0,
+        weak_points: 0
       });
     }
     return clubStats.get(club);
@@ -72,6 +73,7 @@ function computeLeagueStandingsFromMatches(matches) {
       hWins += 1;
     } else if (h1a > h1h) {
       aStat.dft_pts += 1;
+      aWins += 1;
     }
 
     if (h2h > h2a) {
@@ -79,13 +81,17 @@ function computeLeagueStandingsFromMatches(matches) {
       hWins += 1;
     } else if (h2a > h2h) {
       aStat.dft_pts += 1;
+      aWins += 1;
     }
 
     if (hWins === 2) hStat.dft_pts += 1;
     if (aWins === 2) aStat.dft_pts += 1;
   }
 
-  return Array.from(clubStats.values());
+  return Array.from(clubStats.values()).map((c) => ({
+    ...c,
+    weak_points: c.std_pts - c.dft_pts
+  }));
 }
 
 function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
@@ -105,9 +111,13 @@ function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
     const clubs = computeLeagueStandingsFromMatches(Array.isArray(matches) ? matches : []);
     const byDft = clubs.slice().sort((a, b) => b.dft_pts - a.dft_pts || b.std_pts - a.std_pts);
     const byStd = clubs.slice().sort((a, b) => b.std_pts - a.std_pts || b.dft_pts - a.dft_pts);
+    const byWpDesc = clubs.slice().sort((a, b) => b.weak_points - a.weak_points || b.std_pts - a.std_pts);
+    const byWpAsc = clubs.slice().sort((a, b) => a.weak_points - b.weak_points || b.dft_pts - a.dft_pts);
 
-    const topDft = byDft[0] || { club: "Leader", dft_pts: 0 };
-    const topStd = byStd[0] || { club: "Leader", std_pts: 0 };
+    const topDft = byDft[0] || { club: "Leader", dft_pts: 0, std_pts: 0, weak_points: 0 };
+    const topStd = byStd[0] || { club: "Leader", dft_pts: 0, std_pts: 0, weak_points: 0 };
+    const topWp = byWpDesc[0] || { club: "Leader", weak_points: 0 };
+    const lowestWp = byWpAsc[0] || { club: "Leader", weak_points: 0 };
 
     leagueSummaries.push({
       code: lg.code,
@@ -116,10 +126,16 @@ function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
       dft_leader_pts: topDft.dft_pts,
       std_leader: topStd.club,
       std_leader_pts: topStd.std_pts,
+      top_weak_points_club: topWp.club,
+      top_weak_points: topWp.weak_points,
+      lowest_weak_points_club: lowestWp.club,
+      lowest_weak_points: lowestWp.weak_points,
       dft_top3: byDft.slice(0, 3),
       dft_bottom3: byDft.slice(-3).reverse(),
       std_top3: byStd.slice(0, 3),
-      std_bottom3: byStd.slice(-3).reverse()
+      std_bottom3: byStd.slice(-3).reverse(),
+      weak_points_top3: byWpDesc.slice(0, 3),
+      weak_points_bottom3: byWpAsc.slice(0, 3)
     });
   }
 
@@ -132,10 +148,16 @@ function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
       dft_leader_pts: 0,
       std_leader: "Leader",
       std_leader_pts: 0,
+      top_weak_points_club: "Leader",
+      top_weak_points: 0,
+      lowest_weak_points_club: "Leader",
+      lowest_weak_points: 0,
       dft_top3: [],
       dft_bottom3: [],
       std_top3: [],
-      std_bottom3: []
+      std_bottom3: [],
+      weak_points_top3: [],
+      weak_points_bottom3: []
     };
 
   const summary = {
@@ -148,6 +170,11 @@ function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
     active_league_name: active.name,
     top_primary_entity: active.dft_leader,
     top_primary_score: active.dft_leader_pts,
+    top_weak_points_club: active.top_weak_points_club,
+    maxWeakPoints: active.top_weak_points,
+    lowest_weak_points_club: active.lowest_weak_points_club,
+    minWeakPoints: active.lowest_weak_points,
+    hasWeakPointsDivergence: Math.abs(active.top_weak_points) >= 4 || Math.abs(active.lowest_weak_points) >= 4,
     maxPositiveDelta: 3,
     maxNegativeDelta: 0,
     flatTopWatchCount: 0,
@@ -176,7 +203,9 @@ function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
       dft_top3: active.dft_top3,
       dft_bottom3: active.dft_bottom3,
       std_top3: active.std_top3,
-      std_bottom3: active.std_bottom3
+      std_bottom3: active.std_bottom3,
+      weak_points_top3: active.weak_points_top3,
+      weak_points_bottom3: active.weak_points_bottom3
     },
     leagues: leagueSummaries.map((l) => ({
       code: l.code,
@@ -184,7 +213,11 @@ function extractFootballSummary({ runDateUtc, dataDir, outputPath }) {
       dft_leader: l.dft_leader,
       dft_leader_pts: l.dft_leader_pts,
       std_leader: l.std_leader,
-      std_leader_pts: l.std_leader_pts
+      std_leader_pts: l.std_leader_pts,
+      top_weak_points_club: l.top_weak_points_club,
+      top_weak_points: l.top_weak_points,
+      lowest_weak_points_club: l.lowest_weak_points_club,
+      lowest_weak_points: l.lowest_weak_points
     }))
   };
 
@@ -215,7 +248,9 @@ if (require.main === module) {
           latest_match_date_utc: summary.latest_match_date_utc,
           active_league_code: summary.active_league_code,
           top_primary_entity: summary.top_primary_entity,
-          top_primary_score: summary.top_primary_score
+          top_primary_score: summary.top_primary_score,
+          top_weak_points_club: summary.top_weak_points_club,
+          maxWeakPoints: summary.maxWeakPoints
         },
         null,
         2
