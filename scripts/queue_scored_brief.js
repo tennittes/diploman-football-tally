@@ -1,4 +1,4 @@
-// scripts/queue_scored_brief.js — Queues Scored Brief Into news-queue.json Targeting Diploman Times
+// scripts/queue_scored_brief.js — Queues Angle-Matched Scored Brief Into news-queue.json Targeting Diploman Times
 const fs = require("fs");
 const path = require("path");
 
@@ -24,22 +24,54 @@ function buildStoryDraft(vertical, selection, metrics) {
   const dateStr = selection.run_date_utc || metrics.run_date_utc;
   const topEntity = metrics.top_primary_entity || "Top Leader";
   const topScore = metrics.top_primary_score ?? 0;
+  const angleId = selection.selected_angle_id || "04";
 
   if (vertical === "footballtally") {
     const leagueName = metrics.active_league_name || "Premier League";
     const leagueCode = metrics.active_league_code || "PL";
-    const stdTop =
-      (metrics.active_league_standings &&
-        metrics.active_league_standings.std_top3 &&
-        metrics.active_league_standings.std_top3[0]) ||
-      null;
+    const standings = metrics.active_league_standings || {};
+    const dftTop3 = standings.dft_top3 || [];
+    const dftBottom3 = standings.dft_bottom3 || [];
+    const stdTop = (standings.std_top3 && standings.std_top3[0]) || null;
+
+    const runnerUp = dftTop3[1] || { club: "Chasers", dft_pts: topScore };
+    const tailClub = dftBottom3[0] || { club: "Bottom Tier", dft_pts: 0 };
     const stdLeaderName = stdTop ? stdTop.club : topEntity;
     const stdLeaderPts = stdTop ? stdTop.std_pts : topScore;
 
-    const title = `${topEntity} Leads ${leagueName} DFT Tally on ${topScore} Pts as ${stdLeaderName} Tops Full-Time Table (${stdLeaderPts} Pts)`;
-    const summary =
-      `${topEntity} holds the Diploman Football Tally (DFT) lead in ${leagueName} (${leagueCode}) with ${topScore} two-half points as of ${dateStr} UTC, ` +
-      `while ${stdLeaderName} leads the standard full-time table on ${stdLeaderPts} points.`;
+    let title;
+    let summary;
+
+    switch (angleId) {
+      case "07": // tail_first — Lower-Tier Pressure Persists as [Entity] Stays Ahead
+        title = `Lower-Tier Pressure Persists on ${tailClub.club} (${tailClub.dft_pts} Pts) as ${topEntity} Stays Ahead on ${topScore} DFT Pts`;
+        summary =
+          `${tailClub.club} remains anchored at the foot of the ${leagueName} (${leagueCode}) two-half table on ${tailClub.dft_pts} points while ${topEntity} leads on ${topScore} points as of ${dateStr} UTC. ` +
+          `Across the table split, ${stdLeaderName} paces the standard full-time standings on ${stdLeaderPts} points.`;
+        break;
+
+      case "04": // contrast_first
+      case "09": // metric_first (DFT vs STD divergence)
+        title = `${topEntity} Tops ${leagueName} DFT Tally (${topScore} Pts) While ${stdLeaderName} Leads Full-Time Table (${stdLeaderPts} Pts)`;
+        summary =
+          `${topEntity} holds the Diploman Football Tally (DFT) lead in ${leagueName} (${leagueCode}) with ${topScore} two-half points as of ${dateStr} UTC, ` +
+          `while ${stdLeaderName} leads the standard full-time table on ${stdLeaderPts} points.`;
+        break;
+
+      case "06": // entity_first — Tight Top-Three Race
+        title = `${topEntity} (${topScore} Pts) Edges Narrow Lead Over ${runnerUp.club} (${runnerUp.dft_pts} Pts) in ${leagueName} DFT Race`;
+        summary =
+          `${topEntity} holds a slim margin on ${topScore} two-half points ahead of ${runnerUp.club} (${runnerUp.dft_pts} pts) in ${leagueName} (${leagueCode}) as of ${dateStr} UTC. ` +
+          `On the full-time table, ${stdLeaderName} sets the pace with ${stdLeaderPts} points.`;
+        break;
+
+      default: // 01, 02, 03, 05, 08, 10
+        title = `${topEntity} Holds ${leagueName} DFT Lead on ${topScore} Pts Ahead of ${runnerUp.club} (${runnerUp.dft_pts} Pts)`;
+        summary =
+          `${topEntity} leads the ${leagueName} (${leagueCode}) Diploman Football Tally on ${topScore} two-half points ahead of ${runnerUp.club} (${runnerUp.dft_pts} pts) as of ${dateStr} UTC, ` +
+          `while ${stdLeaderName} tops the standard full-time table on ${stdLeaderPts} points.`;
+        break;
+    }
 
     return {
       title,
@@ -53,7 +85,7 @@ function buildStoryDraft(vertical, selection, metrics) {
         "Diploman Times",
         "Football Tally",
         leagueCode,
-        `Angle ${selection.selected_angle_id}`
+        `Angle ${angleId}`
       ],
       featured_image: {
         src: "",
@@ -77,7 +109,7 @@ function buildStoryDraft(vertical, selection, metrics) {
         "Diploman Times",
         "Policing Intel",
         topEntity,
-        `Angle ${selection.selected_angle_id}`
+        `Angle ${angleId}`
       ],
       featured_image: {
         src: "",
@@ -100,7 +132,7 @@ function buildStoryDraft(vertical, selection, metrics) {
       "Diploman Times",
       "Governance Score",
       topEntity,
-      `Angle ${selection.selected_angle_id}`
+      `Angle ${angleId}`
     ],
     featured_image: {
       src: "",
