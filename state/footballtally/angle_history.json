@@ -1,6 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "vertical": "REPLACE_WITH_VERTICAL_KEY",
-  "cooldown_window_runs": 7,
-  "entries": []
+  "vertical": "footballtally",
+  "entries": [
+    {
+      "run_date_utc": "2026-11-20",
+      "vertical": "footballtally",
+      "angle_id": "09",
+      "family": "execution_momentum",
+      "opening_class": "metric_first"
+    }
+  ]
 }

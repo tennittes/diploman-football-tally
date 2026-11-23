@@ -1,0 +1,30 @@
+[
+  {
+    "type": "scored_brief",
+    "id": "scored-ftb-2026-11-20-09",
+    "published": false,
+    "target_url": "https://www.diplomantimes.com",
+    "vertical": "footballtally",
+    "source_domain": "https://footballtally.diplomantimes.com/",
+    "angle_id": "09",
+    "angle_family": "execution_momentum",
+    "opening_class": "metric_first",
+    "headline_skeleton": "Two-Half DFT vs. Full-Time Table Diverges Across League Slate",
+    "lede_rule": "Sentence 1 explains where DFT and STD diverge; Sentence 2 names the clubs setting the pace.",
+    "title": "Brighton Hove Leads Premier League DFT Tally on 14 Pts as Arsenal Tops Full-Time Table (27 Pts)",
+    "summary": "Brighton Hove holds the Diploman Football Tally (DFT) lead in Premier League (PL) with 14 two-half points as of 2026-11-20 UTC, while Arsenal leads the standard full-time table on 27 points.",
+    "labels": [
+      "News Report",
+      "Diploman Times",
+      "Football Tally",
+      "PL",
+      "Angle 09"
+    ],
+    "featured_image": {
+      "src": "",
+      "alt": "Premier League Diploman Football Tally Standings",
+      "target_url": "https://www.diplomantimes.com"
+    },
+    "queued_at_utc": "2026-11-23T12:10:52.828Z"
+  }
+]

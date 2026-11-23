@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0.0",
+  "run_date_utc": "2026-11-20",
+  "latest_match_date_utc": "2026-11-20",
+  "vertical": "footballtally",
+  "tracked_league_count": 8,
+  "active_league_code": "PL",
+  "active_league_name": "Premier League",
+  "top_primary_entity": "Brighton Hove",
+  "top_primary_score": 14,
+  "maxPositiveDelta": 3,
+  "maxNegativeDelta": 0,
+  "flatTopWatchCount": 0,
+  "hasPostSpikeReversion": false,
+  "creepStreakDays": 2,
+  "hasPrimarySecondarySplit": true,
+  "hasInverseDivergence": true,
+  "hasThroughputGap": false,
+  "hasStabilityLead": false,
+  "hasDualTopTier": false,
+  "maxZoneClusterCount": 3,
+  "hasCorridorOrDerbyDriver": false,
+  "isTopMarginTight": true,
+  "hasBottomTierDrag": true,
+  "hasTierCrossover": true,
+  "hasFiscalOrFundingTrigger": false,
+  "hasLeadershipOrTacticalShift": false,
+  "hasAccountabilityOrDisciplineEvent": false,
+  "hasExecutionOrSweepMilestone": true,
+  "hasFrictionOrLateShock": false,
+  "hasFiveDayCrossover": false,
+  "hasMidweekShift": false,
+  "leaderStreakRuns": 1,
+  "active_league_standings": {
+    "dft_top3": [
+      {
+        "club": "Brighton Hove",
+        "code": "BRI",
+        "dft_pts": 14,
+        "std_pts": 22
+      },
+      {
+        "club": "Arsenal",
+        "code": "ARS",
+        "dft_pts": 13,
+        "std_pts": 27
+      },
+      {
+        "club": "Bournemouth",
+        "code": "BOU",
+        "dft_pts": 12,
+        "std_pts": 15
+      }
+    ],
+    "dft_bottom3": [
+      {
+        "club": "Sunderland",
+        "code": "SUN",
+        "dft_pts": 2,
+        "std_pts": 8
+      },
+      {
+        "club": "Man United",
+        "code": "MAN",
+        "dft_pts": 2,
+        "std_pts": 8
+      },
+      {
+        "club": "Nottingham",
+        "code": "NOT",
+        "dft_pts": 3,
+        "std_pts": 9
+      }
+    ],
+    "std_top3": [
+      {
+        "club": "Arsenal",
+        "code": "ARS",
+        "dft_pts": 13,
+        "std_pts": 27
+      },
+      {
+        "club": "Brighton Hove",
+        "code": "BRI",
+        "dft_pts": 14,
+        "std_pts": 22
+      },
+      {
+        "club": "Man City",
+        "code": "MAN",
+        "dft_pts": 10,
+        "std_pts": 21
+      }
+    ],
+    "std_bottom3": [
+      {
+        "club": "Crystal Palace",
+        "code": "CRY",
+        "dft_pts": 4,
+        "std_pts": 7
+      },
+      {
+        "club": "Sunderland",
+        "code": "SUN",
+        "dft_pts": 2,
+        "std_pts": 8
+      },
+      {
+        "club": "Man United",
+        "code": "MAN",
+        "dft_pts": 2,
+        "std_pts": 8
+      }
+    ]
+  },
+  "leagues": [
+    {
+      "code": "BL1",
+      "name": "Bundesliga",
+      "dft_leader": "RB Leipzig",
+      "dft_leader_pts": 15,
+      "std_leader": "Bayern",
+      "std_leader_pts": 21
+    },
+    {
+      "code": "BSA",
+      "name": "Campeonato Brasileiro Serie A",
+      "dft_leader": "Flamengo",
+      "dft_leader_pts": 47,
+      "std_leader": "Flamengo",
+      "std_leader_pts": 79
+    },
+    {
+      "code": "DED",
+      "name": "Eredivisie",
+      "dft_leader": "PSV",
+      "dft_leader_pts": 23,
+      "std_leader": "PSV",
+      "std_leader_pts": 26
+    },
+    {
+      "code": "FL1",
+      "name": "Ligue 1",
+      "dft_leader": "PSG",
+      "dft_leader_pts": 13,
+      "std_leader": "PSG",
+      "std_leader_pts": 23
+    },
+    {
+      "code": "PD",
+      "name": "La Liga",
+      "dft_leader": "Barça",
+      "dft_leader_pts": 24,
+      "std_leader": "Barça",
+      "std_leader_pts": 33
+    },
+    {
+      "code": "PL",
+      "name": "Premier League",
+      "dft_leader": "Brighton Hove",
+      "dft_leader_pts": 14,
+      "std_leader": "Arsenal",
+      "std_leader_pts": 27
+    },
+    {
+      "code": "PPL",
+      "name": "Primeira Liga",
+      "dft_leader": "Porto",
+      "dft_leader_pts": 16,
+      "std_leader": "Porto",
+      "std_leader_pts": 33
+    },
+    {
+      "code": "SA",
+      "name": "Serie A",
+      "dft_leader": "Roma",
+      "dft_leader_pts": 18,
+      "std_leader": "Lazio",
+      "std_leader_pts": 29
+    }
+  ]
+}

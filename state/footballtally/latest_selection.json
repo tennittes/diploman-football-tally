@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": null,
-  "vertical": "REPLACE_WITH_VERTICAL_KEY",
-  "domain": "REPLACE_WITH_SUBDOMAIN_URL",
+  "run_date_utc": "2026-11-20",
+  "vertical": "footballtally",
+  "domain": "https://footballtally.diplomantimes.com/",
   "is_thursday_rollover": false,
-  "selected_angle_id": null,
-  "family": null,
-  "opening_class": null,
-  "headline_skeleton": null,
-  "lede_rule": null,
+  "selected_angle_id": "09",
+  "family": "execution_momentum",
+  "opening_class": "metric_first",
+  "headline_skeleton": "Two-Half DFT vs. Full-Time Table Diverges Across League Slate",
+  "lede_rule": "Sentence 1 explains where DFT and STD diverge; Sentence 2 names the clubs setting the pace.",
   "excluded_recent_ids": []
 }
