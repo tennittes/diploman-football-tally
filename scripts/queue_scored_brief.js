@@ -42,12 +42,26 @@ function buildFootballDraft(selection, metrics, dateStr) {
   const dftBottom3 = Array.isArray(standings.dft_bottom3) ? standings.dft_bottom3 : [];
   const stdTop3 = Array.isArray(standings.std_top3) ? standings.std_top3 : [];
   const stdBottom3 = Array.isArray(standings.std_bottom3) ? standings.std_bottom3 : [];
+  const wpTop3 = Array.isArray(standings.weak_points_top3) ? standings.weak_points_top3 : [];
+  const wpBottom3 = Array.isArray(standings.weak_points_bottom3) ? standings.weak_points_bottom3 : [];
 
   const runnerUp = dftTop3[1] || { club: "nearest rival", dft_pts: topScore };
   const thirdClub = dftTop3[2] || null;
   const tailClub = dftBottom3[0] || { club: "the bottom club", dft_pts: 0 };
-  const stdLeader = stdTop3[0] || { club: topEntity, std_pts: topScore };
+  const stdLeader = stdTop3[0] || { club: topEntity, std_pts: topScore, weak_points: 0 };
   const stdRunnerUp = stdTop3[1] || null;
+  const topDftObj = dftTop3[0] || { club: topEntity, dft_pts: topScore, std_pts: topScore, weak_points: 0 };
+
+  const topWpClub =
+    wpTop3[0] ||
+    (metrics.top_weak_points_club
+      ? { club: metrics.top_weak_points_club, weak_points: Number(metrics.maxWeakPoints ?? 0) }
+      : null);
+  const lowestWpClub =
+    wpBottom3[0] ||
+    (metrics.lowest_weak_points_club
+      ? { club: metrics.lowest_weak_points_club, weak_points: Number(metrics.minWeakPoints ?? 0) }
+      : null);
 
   let title;
   let summary;
@@ -61,18 +75,22 @@ function buildFootballDraft(selection, metrics, dateStr) {
       leadNarrative =
         `Bottom-ranked ${tailClub.club} sits at the foot of the ${leagueName} (${leagueCode}) two-half table with ${tailClub.dft_pts} points as of ${dateStr}, ` +
         `contrasting sharply with frontrunner ${topEntity} on ${topScore} points. ` +
-        `Across the wider ${leagueName} table split, ${stdLeader.club} paces the standard full-time standings with ${stdLeader.std_pts} points.`;
+        `Across the wider ${leagueName} table split, ${stdLeader.club} paces the standard full-time standings with ${stdLeader.std_pts} points` +
+        (topWpClub ? `, while ${topWpClub.club} carries the steepest Weak Points gap at ${formatDelta(topWpClub.weak_points)} WP.` : ".");
       break;
     }
     case "04":
     case "09": {
+      const wpTag = topWpClub ? ` (${formatDelta(topWpClub.weak_points)} WP on ${topWpClub.club})` : "";
       title = `${topEntity} Tops ${leagueName} DFT Tally (${topScore} Pts) While ${stdLeader.club} Leads Full-Time Table (${stdLeader.std_pts} Pts)`;
       summary =
-        `${topEntity} holds the ${leagueName} two-half lead on ${topScore} points as ${stdLeader.club} tops the full-time standings on ${stdLeader.std_pts} points.`;
+        `${topEntity} holds the ${leagueName} two-half lead on ${topScore} points as ${stdLeader.club} tops the full-time standings on ${stdLeader.std_pts} points${wpTag}.`;
       leadNarrative =
         `${topEntity} commands first place in the ${leagueName} (${leagueCode}) two-half standings with ${topScore} points on ${dateStr}, ` +
         `whereas ${stdLeader.club} leads the standard full-time table on ${stdLeader.std_pts} points. ` +
-        `The divergence between half-by-half control and final match outcomes continues to separate contenders across ${leagueName}.`;
+        (topWpClub
+          ? `Weak Points (STD minus DFT) highlight the structural split, led by ${topWpClub.club} at ${formatDelta(topWpClub.weak_points)} WP across ${leagueName}.`
+          : `The divergence between half-by-half control and final match outcomes continues to separate contenders across ${leagueName}.`);
       break;
     }
     case "06": {
@@ -82,7 +100,7 @@ function buildFootballDraft(selection, metrics, dateStr) {
       leadNarrative =
         `A tight race at the summit of the ${leagueName} (${leagueCode}) two-half table sees ${topEntity} on ${topScore} points ` +
         `just ahead of ${runnerUp.club} (${runnerUp.dft_pts} points) as of ${dateStr}. ` +
-        `In the standard full-time standings, ${stdLeader.club} sets the pace with ${stdLeader.std_pts} points.`;
+        `In the standard full-time standings, ${stdLeader.club} sets the pace with ${stdLeader.std_pts} points (${formatDelta(stdLeader.weak_points ?? 0)} WP).`;
       break;
     }
     default: {
@@ -90,14 +108,17 @@ function buildFootballDraft(selection, metrics, dateStr) {
       summary =
         `${topEntity} leads the ${leagueName} two-half table on ${topScore} points ahead of ${runnerUp.club}, while ${stdLeader.club} tops full-time standings.`;
       leadNarrative =
-        `${topEntity} paces the ${leagueName} (${leagueCode}) two-half standings with ${topScore} points ahead of ${runnerUp.club} (${runnerUp.dft_pts} points) on ${dateStr}. ` +
-        `Meanwhile, ${stdLeader.club} holds first place in the standard full-time table on ${stdLeader.std_pts} points, highlighting contrasting paths to points accumulation.`;
+        `${topEntity} paces the ${leagueName} (${leagueCode}) two-half standings with ${topScore} points (${formatDelta(topDftObj.weak_points ?? 0)} WP) ahead of ${runnerUp.club} (${runnerUp.dft_pts} points) on ${dateStr}. ` +
+        `Meanwhile, ${stdLeader.club} holds first place in the standard full-time table on ${stdLeader.std_pts} points (${formatDelta(stdLeader.weak_points ?? 0)} WP), highlighting contrasting paths to points accumulation.`;
       break;
     }
   }
 
   const dftPodiumText = dftTop3.length
-    ? formatList(dftTop3, (c, idx) => `${idx + 1}. ${c.club} (${c.dft_pts} pts)`)
+    ? formatList(
+        dftTop3,
+        (c, idx) => `${idx + 1}. ${c.club} (${c.dft_pts} pts, ${formatDelta(c.weak_points ?? 0)} WP)`
+      )
     : `${topEntity} (${topScore} pts)`;
 
   const gapToSecond = Math.max(0, Number(topScore) - Number(runnerUp.dft_pts ?? topScore));
@@ -111,18 +132,32 @@ function buildFootballDraft(selection, metrics, dateStr) {
     (thirdClub ? ` and leads third-placed ${thirdClub.club} by ${gapToThird} points.` : ".");
 
   const stdTopText = stdTop3.length
-    ? formatList(stdTop3, (c) => `${c.club} (${c.std_pts} pts)`)
+    ? formatList(stdTop3, (c) => `${c.club} (${c.std_pts} pts, ${formatDelta(c.weak_points ?? 0)} WP)`)
     : `${stdLeader.club} (${stdLeader.std_pts} pts)`;
+
+  const wpTopText = wpTop3.length
+    ? formatList(
+        wpTop3,
+        (c) => `${c.club} (${formatDelta(c.weak_points)} WP: ${c.std_pts} STD vs ${c.dft_pts} DFT)`
+      )
+    : "";
+
+  const wpLowText =
+    lowestWpClub && (!topWpClub || lowestWpClub.club !== topWpClub.club)
+      ? ` while ${lowestWpClub.club} posts the lowest Weak Points tally at ${formatDelta(lowestWpClub.weak_points)} WP`
+      : "";
 
   const p2 =
     `The standard full-time standings present a contrasting picture, led by ${stdTopText}. ` +
     (stdRunnerUp
       ? `${stdLeader.club} stays ${Math.max(0, Number(stdLeader.std_pts ?? 0) - Number(stdRunnerUp.std_pts ?? 0))} points clear of ${stdRunnerUp.club} in full-time points, `
       : "") +
-    `showing how clubs that close out full matches can hold higher standard totals even when half-by-half tallies distribute points differently.`;
+    (wpTopText
+      ? `and Weak Points (STD minus DFT) show the largest positive cushions on ${wpTopText}${wpLowText}, reflecting points collected from draws or single-half wins.`
+      : `showing how clubs that close out full matches can hold higher standard totals even when half-by-half tallies distribute points differently.`);
 
   const tailText = dftBottom3.length
-    ? formatList(dftBottom3, (c) => `${c.club} (${c.dft_pts} pts)`)
+    ? formatList(dftBottom3, (c) => `${c.club} (${c.dft_pts} pts, ${formatDelta(c.weak_points ?? 0)} WP)`)
     : `${tailClub.club} (${tailClub.dft_pts} pts)`;
 
   const stdTailText = stdBottom3.length
@@ -140,8 +175,13 @@ function buildFootballDraft(selection, metrics, dateStr) {
   const crossLeagueText = otherLeagues.length
     ? formatList(
         otherLeagues,
-        (l) =>
-          `${l.name} (${l.dft_leader} on ${l.dft_leader_pts} two-half pts; ${l.std_leader} on ${l.std_leader_pts} full-time pts)`
+        (l) => {
+          const wpNote =
+            l.top_weak_points_club && Number.isFinite(Number(l.top_weak_points))
+              ? `; max WP: ${l.top_weak_points_club} ${formatDelta(l.top_weak_points)}`
+              : "";
+          return `${l.name} (${l.dft_leader} on ${l.dft_leader_pts} two-half pts; ${l.std_leader} on ${l.std_leader_pts} full-time pts${wpNote})`;
+        }
       )
     : "";
 
@@ -351,6 +391,9 @@ function queueScoredBrief({ vertical, selectionPath, metricsPath, queuePath }) {
     opening_class: selection.opening_class || "entity_first",
     headline_skeleton: selection.headline_skeleton || "",
     lede_rule: selection.lede_rule || "",
+    ...(vertical === "footballtally" && selection.weak_points_context
+      ? { weak_points_context: selection.weak_points_context }
+      : {}),
     title: draft.title,
     summary: draft.summary,
     labels: draft.labels,
