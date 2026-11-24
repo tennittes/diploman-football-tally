@@ -22,8 +22,8 @@ function escapeXml(str) {
     .replace(/&/g, "&")
     .replace(/</g, "<")
     .replace(/>/g, ">")
-    .replace(/"/g, """)
-    .replace(/'/g, "'");
+    .replace(/\x22/g, """)
+    .replace(/\x27/g, "'");
 }
 
 function formatDelta(val) {
