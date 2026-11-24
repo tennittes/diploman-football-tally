@@ -69,7 +69,7 @@ jobs:
           --metrics "state/footballtally/daily_metrics_summary.json"
           --queue "news-queue.json"
 
-      - name: Commit updated football state and news-queue.json
+      - name: Commit updated football state, card & news-queue.json
         run: |
           RUN_DATE="${{ steps.run_meta.outputs.run_date_utc }}"
           git config user.name "github-actions[bot]"
@@ -79,6 +79,9 @@ jobs:
             "state/footballtally/angle_history.json" \
             "state/footballtally/latest_selection.json" \
             "news-queue.json"
+          if [ -d "assets/cards" ]; then
+            git add "assets/cards"
+          fi
           if ! git diff --staged --quiet; then
             git commit -m "chore(footballtally): extract, select angle & queue Diploman Times brief for ${RUN_DATE}"
             git push
