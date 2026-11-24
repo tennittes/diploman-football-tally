@@ -57,62 +57,87 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
   const priorEntries = historyEntries.filter(
     (e) => !(e.run_date_utc === runDateUtc && e.vertical === vertical)
   );
-  const recentEntries = priorEntries.slice(-7);
-  const recentIds = new Set(recentEntries.map((e) => e.angle_id));
+
+  // Enforce 12-run angle_id cooldown and 2-run family cooldown so consecutive days shift analytical focus
+  const recentIds = new Set(priorEntries.slice(-12).map((e) => e.angle_id));
   const recentFamilies = new Set(priorEntries.slice(-2).map((e) => e.family).filter(Boolean));
   const lastEntry = priorEntries.length ? priorEntries[priorEntries.length - 1] : null;
   const lastOpeningClass = lastEntry ? lastEntry.opening_class : null;
 
-  const eligibleForVertical = allAngles.filter(
-    (a) => Array.isArray(a.verticals) && a.verticals.includes(vertical)
-  );
+  // Support both schema formats: a.syntax[vertical] or a.verticals.includes(vertical)
+  const eligibleForVertical = allAngles.filter((a) => {
+    const hasSyntax = a.syntax && typeof a.syntax === "object" && Boolean(a.syntax[vertical]);
+    const hasVerticalArray = Array.isArray(a.verticals) && a.verticals.includes(vertical);
+    if (!hasSyntax && !hasVerticalArray) return false;
+    // Reserve angle 23 (Thursday rollover anchor) strictly for Thursdays
+    if (String(a.id) === "23" && !isThursday) return false;
+    return true;
+  });
 
-  // 1. Strictest: matches telemetry, not in last 7 angle_ids, not in last 2 families, new opening_class
-  let candidates = eligibleForVertical.filter(
-    (a) =>
-      !recentIds.has(a.id) &&
-      (!a.family || !recentFamilies.has(a.family)) &&
-      (!lastOpeningClass || a.opening_class !== lastOpeningClass) &&
-      evaluateCondition(a.condition, metrics)
-  );
-
-  // 2. Relax opening_class while keeping 7-day id cooldown, 2-day family cooldown, and condition match
-  if (candidates.length === 0) {
-    candidates = eligibleForVertical.filter(
-      (a) =>
-        !recentIds.has(a.id) &&
-        (!a.family || !recentFamilies.has(a.family)) &&
-        evaluateCondition(a.condition, metrics)
-    );
-  }
-
-  // 3. Relax family cooldown while keeping 7-day id cooldown and condition match
-  if (candidates.length === 0) {
-    candidates = eligibleForVertical.filter(
-      (a) => !recentIds.has(a.id) && evaluateCondition(a.condition, metrics)
-    );
-  }
-
-  // 4. Relax condition match while respecting 7-day id cooldown
-  if (candidates.length === 0) {
-    candidates = eligibleForVertical.filter((a) => !recentIds.has(a.id));
-  }
-
-  // 5. Final fallback across all vertical angles
-  if (candidates.length === 0) {
-    candidates = eligibleForVertical;
-  }
-
-  if (candidates.length === 0) {
+  if (eligibleForVertical.length === 0) {
     throw new Error(`No angles configured for vertical "${vertical}" in ${anglesPath}`);
   }
 
-  const seedStr = `${runDateUtc}:${vertical}`;
-  let hash = 0;
-  for (let i = 0; i < seedStr.length; i++) {
-    hash = (hash * 31 + seedStr.charCodeAt(i)) >>> 0;
+  let chosen = null;
+
+  // On Thursdays, anchor on angle 23 (thursday_weekly_rollover_anchor) if configured
+  if (isThursday) {
+    chosen = eligibleForVertical.find((a) => String(a.id) === "23") || null;
   }
-  const chosen = candidates[hash % candidates.length];
+
+  if (!chosen) {
+    // 1. Strictest: condition match + not in last 12 IDs + not in last 2 families + new opening_class
+    let candidates = eligibleForVertical.filter(
+      (a) =>
+        !recentIds.has(a.id) &&
+        (!a.family || !recentFamilies.has(a.family)) &&
+        (!lastOpeningClass || a.opening_class !== lastOpeningClass) &&
+        evaluateCondition(a.condition, metrics)
+    );
+
+    // 2. Relax opening_class while preserving 12-run ID cooldown & 2-run family cooldown
+    if (candidates.length === 0) {
+      candidates = eligibleForVertical.filter(
+        (a) =>
+          !recentIds.has(a.id) &&
+          (!a.family || !recentFamilies.has(a.family)) &&
+          evaluateCondition(a.condition, metrics)
+      );
+    }
+
+    // 3. Relax family cooldown while preserving 12-run ID cooldown
+    if (candidates.length === 0) {
+      candidates = eligibleForVertical.filter(
+        (a) => !recentIds.has(a.id) && evaluateCondition(a.condition, metrics)
+      );
+    }
+
+    // 4. Relax condition match while preserving 12-run ID cooldown
+    if (candidates.length === 0) {
+      candidates = eligibleForVertical.filter((a) => !recentIds.has(a.id));
+    }
+
+    // 5. Fallback to last-7 ID cooldown
+    if (candidates.length === 0) {
+      const last7 = new Set(priorEntries.slice(-7).map((e) => e.angle_id));
+      candidates = eligibleForVertical.filter((a) => !last7.has(a.id));
+    }
+
+    if (candidates.length === 0) {
+      candidates = eligibleForVertical;
+    }
+
+    // Deterministic weighted pick seeded by date + vertical
+    const seedStr = `${runDateUtc}:${vertical}`;
+    let hash = 0;
+    for (let i = 0; i < seedStr.length; i++) {
+      hash = (hash * 31 + seedStr.charCodeAt(i)) >>> 0;
+    }
+    chosen = candidates[hash % candidates.length];
+  }
+
+  const resolvedSkeleton =
+    (chosen.syntax && chosen.syntax[vertical]) || chosen.headline_skeleton || "";
 
   const selection = {
     schema_version: "1.0.0",
@@ -121,10 +146,11 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
     domain: contract.domain || "https://www.diplomantimes.com/",
     is_thursday_rollover: isThursday,
     selected_angle_id: chosen.id,
-    family: chosen.family,
-    opening_class: chosen.opening_class,
-    headline_skeleton: chosen.headline_skeleton,
-    lede_rule: chosen.lede_rule,
+    angle_name: chosen.name || "",
+    family: chosen.family || "general",
+    opening_class: chosen.opening_class || "entity_first",
+    headline_skeleton: resolvedSkeleton,
+    lede_rule: chosen.lede_rule || "",
     weak_points_context: {
       has_divergence: Boolean(metrics.hasWeakPointsDivergence),
       top_club: metrics.top_weak_points_club || null,
@@ -141,8 +167,9 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
       run_date_utc: runDateUtc,
       vertical,
       angle_id: chosen.id,
-      family: chosen.family,
-      opening_class: chosen.opening_class
+      angle_name: chosen.name || "",
+      family: chosen.family || "general",
+      opening_class: chosen.opening_class || "entity_first"
     })
     .slice(-30);
 
