@@ -18,12 +18,13 @@ function saveJson(filePath, data) {
 }
 
 function escapeXml(str) {
+  const amp = String.fromCharCode(38);
   return String(str ?? "")
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">")
-    .replace(/\x22/g, """)
-    .replace(/\x27/g, "'");
+    .replace(/\x26/g, `${amp}amp;`)
+    .replace(/\x3c/g, `${amp}lt;`)
+    .replace(/\x3e/g, `${amp}gt;`)
+    .replace(/\x22/g, `${amp}quot;`)
+    .replace(/\x27/g, `${amp}apos;`);
 }
 
 function formatDelta(val) {
