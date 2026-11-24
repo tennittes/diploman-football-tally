@@ -5,6 +5,7 @@
   "domain": "https://footballtally.diplomantimes.com/",
   "is_thursday_rollover": false,
   "selected_angle_id": "03",
+  "angle_name": "",
   "family": "baseline_deviations",
   "opening_class": "streak_first",
   "headline_skeleton": "Multi-Day Climb Lifts [Entity] Into Primary Spotlight",
@@ -13,8 +14,8 @@
     "has_divergence": true,
     "top_club": "Arsenal",
     "max_weak_points": 14,
-    "lowest_club": "Bournemouth",
-    "min_weak_points": 2
+    "lowest_club": "Crystal Palace",
+    "min_weak_points": 3
   },
   "excluded_recent_ids": [
     "08"
