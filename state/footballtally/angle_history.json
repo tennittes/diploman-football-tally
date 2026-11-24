@@ -8,6 +8,13 @@
       "angle_id": "08",
       "family": "execution_momentum",
       "opening_class": "milestone_first"
+    },
+    {
+      "run_date_utc": "2026-11-24",
+      "vertical": "footballtally",
+      "angle_id": "03",
+      "family": "baseline_deviations",
+      "opening_class": "streak_first"
     }
   ]
 }
