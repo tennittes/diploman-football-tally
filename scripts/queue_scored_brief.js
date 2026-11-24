@@ -53,6 +53,24 @@ function formatList(items, formatter, conjunction = "and") {
  * Generates a 100% original, copyright-free 1200x675 SVG Telemetry Card
  * plotting DFT (Two-Half) vs STD (Full-Time) points for featured clubs.
  */
+function wrapHeadlineLines(text, maxCharsPerLine = 68) {
+  const words = String(text ?? "").trim().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return [""];
+  const lines = [];
+  let current = "";
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length <= maxCharsPerLine || !current) {
+      current = next;
+    } else {
+      lines.push(current);
+      current = word;
+    }
+  }
+  if (current) lines.push(current);
+  return lines.slice(0, 2);
+}
+
 function generateFootballTelemetryCardSvg({ dateStr, leagueName, leagueCode, focusTag, headline, rows }) {
   const safeRows = (Array.isArray(rows) ? rows : []).slice(0, 5);
   const maxPts = Math.max(
@@ -60,9 +78,13 @@ function generateFootballTelemetryCardSvg({ dateStr, leagueName, leagueCode, foc
     ...safeRows.map((r) => Math.max(Number(r.dft_pts || 0), Number(r.std_pts || 0)))
   );
 
+  const headlineLines = wrapHeadlineLines(headline, 68);
+  const isTwoLineHeadline = headlineLines.length > 1;
+  const legendY = isTwoLineHeadline ? 214 : 190;
+  const startY = isTwoLineHeadline ? 248 : 235;
+  const rowGap = isTwoLineHeadline ? 72 : 76;
+
   const barMaxWidth = 540;
-  const startY = 235;
-  const rowGap = 76;
 
   const barsSvg = safeRows
     .map((r, i) => {
@@ -76,24 +98,28 @@ function generateFootballTelemetryCardSvg({ dateStr, leagueName, leagueCode, foc
 
       return `
       <g transform="translate(64, ${y})">
-        <rect x="0" y="0" width="1072" height="62" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-        <text x="20" y="37" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">${rank}</text>
-        <text x="58" y="37" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">${escapeXml(r.club)}</text>
+        <rect x="0" y="0" width="1072" height="60" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="20" y="36" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">${rank}</text>
+        <text x="58" y="36" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">${escapeXml(r.club)}</text>
 
-        <rect x="330" y="13" width="${dftW}" height="15" rx="3" fill="#2563EB"/>
-        <text x="${330 + dftW + 10}" y="25" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">${dft} DFT</text>
+        <rect x="330" y="12" width="${dftW}" height="15" rx="3" fill="#2563EB"/>
+        <text x="${330 + dftW + 10}" y="24" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">${dft} DFT</text>
 
-        <rect x="330" y="34" width="${stdW}" height="15" rx="3" fill="#10B981"/>
-        <text x="${330 + stdW + 10}" y="46" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">${std} STD</text>
+        <rect x="330" y="33" width="${stdW}" height="15" rx="3" fill="#10B981"/>
+        <text x="${330 + stdW + 10}" y="45" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">${std} STD</text>
 
-        <rect x="955" y="15" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
-        <text x="1003" y="36" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">${escapeXml(wp)} WP</text>
+        <rect x="955" y="14" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="1003" y="35" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">${escapeXml(wp)} WP</text>
       </g>`;
     })
     .join("\n");
 
-  const shortHeadline =
-    headline.length > 74 ? `${headline.slice(0, 71).replace(/\s+\S*$/, "")}...` : headline;
+  const headlineSvg = headlineLines
+    .map(
+      (line, idx) =>
+        `<text x="64" y="${158 + idx * 32}" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="25" font-weight="900">${escapeXml(line)}</text>`
+    )
+    .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="${escapeXml(headline)}">
@@ -107,31 +133,30 @@ function generateFootballTelemetryCardSvg({ dateStr, leagueName, leagueCode, foc
   <rect width="1200" height="675" fill="url(#bgGrad)"/>
   <rect x="0" y="0" width="1200" height="8" fill="#2563EB"/>
 
-  <rect x="64" y="42" width="275" height="34" rx="4" fill="#2563EB"/>
-  <text x="201" y="64" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="900" letter-spacing="1.2">DIPLOMAN FOOTBALL STATS</text>
+  <rect x="64" y="42" width="305" height="34" rx="4" fill="#2563EB"/>
+  <text x="216" y="64" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="900" letter-spacing="1.2">DIPLOMAN FOOTBALL TALLY</text>
 
-  <rect x="352" y="42" width="230" height="34" rx="4" fill="#1E293B" stroke="#3B82F6" stroke-width="1"/>
-  <text x="467" y="64" text-anchor="middle" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800" letter-spacing="0.8">${escapeXml(leagueName.toUpperCase())} (${escapeXml(leagueCode)})</text>
+  <rect x="382" y="42" width="230" height="34" rx="4" fill="#1E293B" stroke="#3B82F6" stroke-width="1"/>
+  <text x="497" y="64" text-anchor="middle" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800" letter-spacing="0.8">${escapeXml(leagueName.toUpperCase())} (${escapeXml(leagueCode)})</text>
 
   <text x="1136" y="65" text-anchor="end" fill="#94A3B8" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="15" font-weight="800" letter-spacing="0.6">${escapeXml(dateStr)} UTC</text>
 
-  <text x="64" y="122" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900" letter-spacing="1.4">${escapeXml(focusTag.toUpperCase())}</text>
-  <text x="64" y="162" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="27" font-weight="900">${escapeXml(shortHeadline)}</text>
+  <text x="64" y="120" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900" letter-spacing="1.4">${escapeXml(focusTag.toUpperCase())}</text>
+  ${headlineSvg}
 
-  <rect x="64" y="190" width="14" height="14" rx="2" fill="#2563EB"/>
-  <text x="86" y="202" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">DFT (Two-Half Points)</text>
+  <rect x="64" y="${legendY}" width="14" height="14" rx="2" fill="#2563EB"/>
+  <text x="86" y="${legendY + 12}" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">DFT (Two-Half Points)</text>
 
-  <rect x="275" y="190" width="14" height="14" rx="2" fill="#10B981"/>
-  <text x="297" y="202" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">STD (Full-Time Points)</text>
+  <rect x="275" y="${legendY}" width="14" height="14" rx="2" fill="#10B981"/>
+  <text x="297" y="${legendY + 12}" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">STD (Full-Time Points)</text>
 
-  <text x="1136" y="202" text-anchor="end" fill="#94A3B8" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">WP = STD MINUS DFT DIFFERENTIAL</text>
+  <text x="1136" y="${legendY + 12}" text-anchor="end" fill="#94A3B8" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">WP = STD MINUS DFT DIFFERENTIAL</text>
 
   ${barsSvg}
 
-  <text x="64" y="644" fill="#64748B" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">PROPRIETARY TWO-HALF TELEMETRY • WWW.DIPLOMANTIMES.COM</text>
+  <text x="64" y="644" fill="#64748B" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">PROPRIETARY TWO-HALF TELEMETRY • FOOTBALLTALLY.DIPLOMANTIMES.COM</text>
 </svg>`;
 }
-
 function buildFootballDraft(selection, metrics, dateStr, repoRoot) {
   const angleId = String(selection.selected_angle_id || "01").padStart(2, "0");
   const topEntity = metrics.top_primary_entity || "Brighton Hove";
