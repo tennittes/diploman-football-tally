@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Brighton Hove Holds Premier League DFT Lead on 15 Pts Ahead of Arsenal (13 Pts)">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#2563EB"/>
+
+  <!-- Top Header Strip -->
+  <rect x="64" y="42" width="275" height="34" rx="4" fill="#2563EB"/>
+  <text x="201" y="64" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="900" letter-spacing="1.2">DIPLOMAN FOOTBALL STATS</text>
+
+  <rect x="352" y="42" width="230" height="34" rx="4" fill="#1E293B" stroke="#3B82F6" stroke-width="1"/>
+  <text x="467" y="64" text-anchor="middle" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800" letter-spacing="0.8">PREMIER LEAGUE (PL)</text>
+
+  <text x="1136" y="65" text-anchor="end" fill="#94A3B8" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="15" font-weight="800" letter-spacing="0.6">2026-11-24 UTC</text>
+
+  <!-- Title & Focus -->
+  <text x="64" y="122" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900" letter-spacing="1.4">TWO-HALF STANDINGS &amp; TABLE LEADERS</text>
+  <text x="64" y="162" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="27" font-weight="900">Brighton Hove Holds Premier League DFT Lead on 15 Pts Ahead of Arsenal...</text>
+
+  <!-- Legend -->
+  <rect x="64" y="190" width="14" height="14" rx="2" fill="#2563EB"/>
+  <text x="86" y="202" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">DFT (Two-Half Points)</text>
+
+  <rect x="275" y="190" width="14" height="14" rx="2" fill="#10B981"/>
+  <text x="297" y="202" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">STD (Full-Time Points)</text>
+
+  <text x="1136" y="202" text-anchor="end" fill="#94A3B8" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">WP = STD MINUS DFT DIFFERENTIAL</text>
+
+  <!-- Data Rows -->
+  
+      <g transform="translate(64, 235)">
+        <rect x="0" y="0" width="1072" height="62" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="20" y="37" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">01</text>
+        <text x="58" y="37" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">Brighton Hove</text>
+
+        <!-- DFT Bar -->
+        <rect x="330" y="13" width="300" height="15" rx="3" fill="#2563EB"/>
+        <text x="640" y="25" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">15 DFT</text>
+
+        <!-- STD Bar -->
+        <rect x="330" y="34" width="440" height="15" rx="3" fill="#10B981"/>
+        <text x="780" y="46" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">22 STD</text>
+
+        <!-- Weak Points Pill -->
+        <rect x="955" y="15" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="1003" y="36" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">+7 WP</text>
+      </g>
+
+      <g transform="translate(64, 311)">
+        <rect x="0" y="0" width="1072" height="62" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="20" y="37" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">02</text>
+        <text x="58" y="37" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">Arsenal</text>
+
+        <!-- DFT Bar -->
+        <rect x="330" y="13" width="260" height="15" rx="3" fill="#2563EB"/>
+        <text x="600" y="25" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">13 DFT</text>
+
+        <!-- STD Bar -->
+        <rect x="330" y="34" width="540" height="15" rx="3" fill="#10B981"/>
+        <text x="880" y="46" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">27 STD</text>
+
+        <!-- Weak Points Pill -->
+        <rect x="955" y="15" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="1003" y="36" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">+14 WP</text>
+      </g>
+
+      <g transform="translate(64, 387)">
+        <rect x="0" y="0" width="1072" height="62" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="20" y="37" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">03</text>
+        <text x="58" y="37" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">Bournemouth</text>
+
+        <!-- DFT Bar -->
+        <rect x="330" y="13" width="260" height="15" rx="3" fill="#2563EB"/>
+        <text x="600" y="25" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">13 DFT</text>
+
+        <!-- STD Bar -->
+        <rect x="330" y="34" width="300" height="15" rx="3" fill="#10B981"/>
+        <text x="640" y="46" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">15 STD</text>
+
+        <!-- Weak Points Pill -->
+        <rect x="955" y="15" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="1003" y="36" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">+2 WP</text>
+      </g>
+
+      <g transform="translate(64, 463)">
+        <rect x="0" y="0" width="1072" height="62" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="20" y="37" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">04</text>
+        <text x="58" y="37" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">Sunderland</text>
+
+        <!-- DFT Bar -->
+        <rect x="330" y="13" width="40" height="15" rx="3" fill="#2563EB"/>
+        <text x="380" y="25" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">2 DFT</text>
+
+        <!-- STD Bar -->
+        <rect x="330" y="34" width="160" height="15" rx="3" fill="#10B981"/>
+        <text x="500" y="46" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">8 STD</text>
+
+        <!-- Weak Points Pill -->
+        <rect x="955" y="15" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="1003" y="36" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">+6 WP</text>
+      </g>
+
+      <g transform="translate(64, 539)">
+        <rect x="0" y="0" width="1072" height="62" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="20" y="37" fill="#60A5FA" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="900">05</text>
+        <text x="58" y="37" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="19" font-weight="800">Man United</text>
+
+        <!-- DFT Bar -->
+        <rect x="330" y="13" width="40" height="15" rx="3" fill="#2563EB"/>
+        <text x="380" y="25" fill="#93C5FD" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">2 DFT</text>
+
+        <!-- STD Bar -->
+        <rect x="330" y="34" width="160" height="15" rx="3" fill="#10B981"/>
+        <text x="500" y="46" fill="#6EE7B7" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="800">8 STD</text>
+
+        <!-- Weak Points Pill -->
+        <rect x="955" y="15" width="96" height="32" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="1003" y="36" text-anchor="middle" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="900">+6 WP</text>
+      </g>
+
+  <!-- Footer -->
+  <text x="64" y="644" fill="#64748B" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">PROPRIETARY TWO-HALF TELEMETRY • WWW.DIPLOMANTIMES.COM</text>
+</svg>

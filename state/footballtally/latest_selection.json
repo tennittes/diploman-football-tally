@@ -18,5 +18,8 @@
   },
   "excluded_recent_ids": [
     "08"
+  ],
+  "excluded_recent_families": [
+    "execution_momentum"
   ]
 }
