@@ -54,36 +54,51 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
   const historyEntries = Array.isArray(historyDoc.entries) ? historyDoc.entries : [];
 
   const isThursday = isThursdayUtc(runDateUtc);
-  const recentEntries = historyEntries.slice(-7);
+  const priorEntries = historyEntries.filter(
+    (e) => !(e.run_date_utc === runDateUtc && e.vertical === vertical)
+  );
+  const recentEntries = priorEntries.slice(-7);
   const recentIds = new Set(recentEntries.map((e) => e.angle_id));
-  const lastEntry = historyEntries.length ? historyEntries[historyEntries.length - 1] : null;
+  const recentFamilies = new Set(priorEntries.slice(-2).map((e) => e.family).filter(Boolean));
+  const lastEntry = priorEntries.length ? priorEntries[priorEntries.length - 1] : null;
   const lastOpeningClass = lastEntry ? lastEntry.opening_class : null;
 
   const eligibleForVertical = allAngles.filter(
     (a) => Array.isArray(a.verticals) && a.verticals.includes(vertical)
   );
 
-  // 1. Prefer angles matching current telemetry conditions, not used in last 7 runs, and not repeating last opening_class
+  // 1. Strictest: matches telemetry, not in last 7 angle_ids, not in last 2 families, new opening_class
   let candidates = eligibleForVertical.filter(
     (a) =>
       !recentIds.has(a.id) &&
+      (!a.family || !recentFamilies.has(a.family)) &&
       (!lastOpeningClass || a.opening_class !== lastOpeningClass) &&
       evaluateCondition(a.condition, metrics)
   );
 
-  // 2. Relax opening_class constraint if needed while keeping 7-run cooldown and condition match
+  // 2. Relax opening_class while keeping 7-day id cooldown, 2-day family cooldown, and condition match
+  if (candidates.length === 0) {
+    candidates = eligibleForVertical.filter(
+      (a) =>
+        !recentIds.has(a.id) &&
+        (!a.family || !recentFamilies.has(a.family)) &&
+        evaluateCondition(a.condition, metrics)
+    );
+  }
+
+  // 3. Relax family cooldown while keeping 7-day id cooldown and condition match
   if (candidates.length === 0) {
     candidates = eligibleForVertical.filter(
       (a) => !recentIds.has(a.id) && evaluateCondition(a.condition, metrics)
     );
   }
 
-  // 3. Relax condition match while respecting 7-run cooldown
+  // 4. Relax condition match while respecting 7-day id cooldown
   if (candidates.length === 0) {
     candidates = eligibleForVertical.filter((a) => !recentIds.has(a.id));
   }
 
-  // 4. Final fallback across all vertical angles
+  // 5. Final fallback across all vertical angles
   if (candidates.length === 0) {
     candidates = eligibleForVertical;
   }
@@ -92,7 +107,6 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
     throw new Error(`No angles configured for vertical "${vertical}" in ${anglesPath}`);
   }
 
-  // Deterministic tie-breaker based on date + vertical so reruns on the same date are stable
   const seedStr = `${runDateUtc}:${vertical}`;
   let hash = 0;
   for (let i = 0; i < seedStr.length; i++) {
@@ -118,11 +132,11 @@ function selectDailyAngle({ vertical, runDateUtc, anglesPath, metricsPath, histo
       lowest_club: metrics.lowest_weak_points_club || null,
       min_weak_points: Number(metrics.minWeakPoints || 0)
     },
-    excluded_recent_ids: Array.from(recentIds)
+    excluded_recent_ids: Array.from(recentIds),
+    excluded_recent_families: Array.from(recentFamilies)
   };
 
-  const nextEntries = historyEntries
-    .filter((e) => !(e.run_date_utc === runDateUtc && e.vertical === vertical))
+  const nextEntries = priorEntries
     .concat({
       run_date_utc: runDateUtc,
       vertical,
