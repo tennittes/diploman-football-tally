@@ -16,6 +16,14 @@
       "angle_name": "",
       "family": "baseline_deviations",
       "opening_class": "streak_first"
+    },
+    {
+      "run_date_utc": "2026-11-25",
+      "vertical": "footballtally",
+      "angle_id": "06",
+      "angle_name": "",
+      "family": "tier_shifts",
+      "opening_class": "entity_first"
     }
   ]
 }

@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-24",
+  "run_date_utc": "2026-11-25",
   "vertical": "footballtally",
   "domain": "https://footballtally.diplomantimes.com/",
   "is_thursday_rollover": false,
-  "selected_angle_id": "03",
+  "selected_angle_id": "06",
   "angle_name": "",
-  "family": "baseline_deviations",
-  "opening_class": "streak_first",
-  "headline_skeleton": "Multi-Day Climb Lifts [Entity] Into Primary Spotlight",
-  "lede_rule": "Sentence 1 highlights sustained momentum; Sentence 2 contextualizes the current standing.",
+  "family": "tier_shifts",
+  "opening_class": "entity_first",
+  "headline_skeleton": "[Entity] Edges Narrow Lead in Tight Top-Three Race",
+  "lede_rule": "Sentence 1 highlights the razor-thin margin; Sentence 2 outlines the immediate challengers.",
   "weak_points_context": {
     "has_divergence": true,
     "top_club": "Arsenal",
@@ -18,9 +18,11 @@
     "min_weak_points": 3
   },
   "excluded_recent_ids": [
-    "08"
+    "08",
+    "03"
   ],
   "excluded_recent_families": [
-    "execution_momentum"
+    "execution_momentum",
+    "baseline_deviations"
   ]
 }
