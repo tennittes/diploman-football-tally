@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-25",
+  "run_date_utc": "2026-11-26",
   "vertical": "footballtally",
   "domain": "https://footballtally.diplomantimes.com/",
-  "is_thursday_rollover": false,
-  "selected_angle_id": "06",
+  "is_thursday_rollover": true,
+  "selected_angle_id": "09",
   "angle_name": "",
-  "family": "tier_shifts",
-  "opening_class": "entity_first",
-  "headline_skeleton": "[Entity] Edges Narrow Lead in Tight Top-Three Race",
-  "lede_rule": "Sentence 1 highlights the razor-thin margin; Sentence 2 outlines the immediate challengers.",
+  "family": "execution_momentum",
+  "opening_class": "metric_first",
+  "headline_skeleton": "Two-Half DFT vs. Full-Time Table Diverges Across League Slate",
+  "lede_rule": "Sentence 1 explains where DFT and STD diverge; Sentence 2 names the clubs setting the pace.",
   "weak_points_context": {
     "has_divergence": true,
     "top_club": "Arsenal",
@@ -19,10 +19,11 @@
   },
   "excluded_recent_ids": [
     "08",
-    "03"
+    "03",
+    "06"
   ],
   "excluded_recent_families": [
-    "execution_momentum",
-    "baseline_deviations"
+    "baseline_deviations",
+    "tier_shifts"
   ]
 }
