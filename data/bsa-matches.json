@@ -4652,5 +4652,57 @@
     "h2_home": 1,
     "h2_away": 0,
     "utcDate": "2026-11-23T23:00:00Z"
+  },
+  {
+    "id": 555099,
+    "week": 36,
+    "home": "Santos",
+    "away": "Grêmio",
+    "home_score": 0,
+    "away_score": 2,
+    "h1_home": 0,
+    "h1_away": 1,
+    "h2_home": 0,
+    "h2_away": 1,
+    "utcDate": "2026-11-24T00:00:00Z"
+  },
+  {
+    "id": 555102,
+    "week": 37,
+    "home": "Chapecoense",
+    "away": "Palmeiras",
+    "home_score": 3,
+    "away_score": 0,
+    "h1_home": 2,
+    "h1_away": 0,
+    "h2_home": 1,
+    "h2_away": 0,
+    "utcDate": "2026-11-24T21:00:00Z"
+  },
+  {
+    "id": 555091,
+    "week": 36,
+    "home": "Mineiro",
+    "away": "Corinthians",
+    "home_score": 1,
+    "away_score": 1,
+    "h1_home": 0,
+    "h1_away": 0,
+    "h2_home": 1,
+    "h2_away": 1,
+    "utcDate": "2026-11-25T23:00:00Z"
+  },
+  {
+    "id": 555108,
+    "week": 37,
+    "home": "São Paulo",
+    "away": "Clube do Remo",
+    "home_score": 3,
+    "away_score": 1,
+    "h1_home": 1,
+    "h1_away": 0,
+    "h2_home": 2,
+    "h2_away": 1,
+    "utcDate": "2026-11-26T23:00:00Z"
   }
 ]
