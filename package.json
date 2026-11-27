@@ -4,6 +4,7 @@
   "description": "Re-engineering football analytics with half-by-half scoring tables across top global leagues.",
   "main": "scripts/update_tables.js",
   "dependencies": {
-    "axios": "^1.6.0"
+    "axios": "^1.6.0",
+    "@resvg/resvg-js": "^2.6.2"
   }
 }
