@@ -64,6 +64,14 @@
     "assists": 2
   },
   {
+    "player": "Jonathan Calleri",
+    "club": "São Paulo FC",
+    "league": "Brasileirao",
+    "leagueShort": "BSA",
+    "goals": 12,
+    "assists": 2
+  },
+  {
     "player": "Matheus Pereira",
     "club": "Cruzeiro EC",
     "league": "Brasileirao",
@@ -126,14 +134,6 @@
     "leagueShort": "PD",
     "goals": 10,
     "assists": 9
-  },
-  {
-    "player": "José Manuel López",
-    "club": "SE Palmeiras",
-    "league": "Brasileirao",
-    "leagueShort": "BSA",
-    "goals": 10,
-    "assists": 7
   },
   {
     "player": "Niclas Füllkrug",
