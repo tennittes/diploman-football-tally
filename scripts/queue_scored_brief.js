@@ -142,9 +142,16 @@ function buildFootballTelemetrySvg({
     4: "#2563EB"
   };
   const accent = accentMap[variant] || "#2563EB";
-  const displayHeadline = truncateLabel(headline, 68);
+  const displayHeadline = truncateLabel(headline, 96);
   const leagueBadgeText = `${leagueName.toUpperCase()} (${leagueCode})`;
-  const badgeWidth = Math.max(190, Math.min(340, leagueBadgeText.length * 10 + 36));
+
+  const brandBadgeX = 52;
+  const brandBadgeW = 274;
+  const brandCenterX = brandBadgeX + brandBadgeW / 2;
+
+  const leagueBadgeX = brandBadgeX + brandBadgeW + 12;
+  const badgeWidth = Math.max(190, Math.min(350, leagueBadgeText.length * 9.5 + 34));
+  const leagueCenterX = leagueBadgeX + badgeWidth / 2;
 
   const headerSvg = `
     <defs>
@@ -156,13 +163,13 @@ function buildFootballTelemetrySvg({
     <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#bgGrad)" />
     <rect x="0" y="0" width="${CARD_WIDTH}" height="6" fill="${accent}" />
 
-    <rect x="52" y="24" width="256" height="30" rx="6" fill="${accent}" />
-    <text x="180" y="44" fill="#FFFFFF" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="0.8" text-anchor="middle">
-      DIPLOMAN FOOTBALL STATS
+    <rect x="${brandBadgeX}" y="24" width="${brandBadgeW}" height="30" rx="6" fill="${accent}" />
+    <text x="${brandCenterX}" y="44" fill="#FFFFFF" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="0.8" text-anchor="middle">
+      DIPLOMAN FOOTBALL TALLY
     </text>
 
-    <rect x="320" y="24" width="${badgeWidth}" height="30" rx="6" fill="#1E293B" stroke="#3B82F6" stroke-width="1" />
-    <text x="${320 + badgeWidth / 2}" y="44" fill="#93C5FD" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" text-anchor="middle">
+    <rect x="${leagueBadgeX}" y="24" width="${badgeWidth}" height="30" rx="6" fill="#1E293B" stroke="#3B82F6" stroke-width="1" />
+    <text x="${leagueCenterX}" y="44" fill="#93C5FD" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" text-anchor="middle">
       ${escapeXml(leagueBadgeText)}
     </text>
 
@@ -174,7 +181,7 @@ function buildFootballTelemetrySvg({
       ${escapeXml(focusTag.toUpperCase())}
     </text>
 
-    <text x="52" y="116" fill="#FFFFFF" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="800">
+    <text x="52" y="116" fill="#FFFFFF" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="800">
       ${escapeXml(displayHeadline)}
     </text>
   `;
@@ -182,7 +189,7 @@ function buildFootballTelemetrySvg({
   const footerSvg = `
     <line x1="52" y1="548" x2="1148" y2="548" stroke="#1E293B" stroke-width="1.5" />
     <text x="52" y="574" fill="#64748B" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8">
-      PROPRIETARY TWO-HALF TELEMETRY  •  WWW.DIPLOMANTIMES.COM
+      PROPRIETARY TWO-HALF TELEMETRY  •  FOOTBALLTALLY.DIPLOMANTIMES.COM
     </text>
     <text x="1148" y="574" fill="#64748B" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" text-anchor="end">
       DFT = Two-Half Pts  |  STD = Full-Time Pts  |  WP = STD − DFT
@@ -296,7 +303,6 @@ function buildFootballTelemetrySvg({
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">${headerSvg}${bodySvg}${footerSvg}</svg>`;
 }
-
 function generateFootballTelemetryCardPng(params) {
   const svgString = buildFootballTelemetrySvg(params);
   const resvg = new Resvg(svgString, {
