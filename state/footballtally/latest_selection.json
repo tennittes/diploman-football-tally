@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-26",
+  "run_date_utc": "2026-11-27",
   "vertical": "footballtally",
   "domain": "https://footballtally.diplomantimes.com/",
-  "is_thursday_rollover": true,
-  "selected_angle_id": "09",
+  "is_thursday_rollover": false,
+  "selected_angle_id": "01",
   "angle_name": "",
-  "family": "execution_momentum",
-  "opening_class": "metric_first",
-  "headline_skeleton": "Two-Half DFT vs. Full-Time Table Diverges Across League Slate",
-  "lede_rule": "Sentence 1 explains where DFT and STD diverge; Sentence 2 names the clubs setting the pace.",
+  "family": "baseline_deviations",
+  "opening_class": "entity_first",
+  "headline_skeleton": "[Entity] Posts [Delta] Surge to Hold Top Spot",
+  "lede_rule": "Sentence 1 states the lead movement and score; Sentence 2 compares against the nearest challenger.",
   "weak_points_context": {
     "has_divergence": true,
     "top_club": "Arsenal",
@@ -20,10 +20,11 @@
   "excluded_recent_ids": [
     "08",
     "03",
-    "06"
+    "06",
+    "09"
   ],
   "excluded_recent_families": [
-    "baseline_deviations",
-    "tier_shifts"
+    "tier_shifts",
+    "execution_momentum"
   ]
 }

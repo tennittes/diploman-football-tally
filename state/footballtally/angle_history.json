@@ -32,6 +32,14 @@
       "angle_name": "",
       "family": "execution_momentum",
       "opening_class": "metric_first"
+    },
+    {
+      "run_date_utc": "2026-11-27",
+      "vertical": "footballtally",
+      "angle_id": "01",
+      "angle_name": "",
+      "family": "baseline_deviations",
+      "opening_class": "entity_first"
     }
   ]
 }
