@@ -13,7 +13,7 @@ on:
       vertical:
         description: "Vertical key (governancescore | policingintel | footballtally)"
         required: true
-        default: "governancescore"
+        default: "footballtally"
       run_date_utc:
         description: "Optional UTC date override (YYYY-MM-DD); defaults to payload or today UTC"
         required: false
@@ -43,10 +43,10 @@ jobs:
         run: |
           VERTICAL="${{ github.event.inputs.vertical }}"
           if [ -z "$VERTICAL" ]; then
-            if [ -f "config/policing-contract.json" ] && [ ! -f "config/governance-contract.json" ]; then
-              VERTICAL="policingintel"
-            elif [ -f "data/pl-matches.json" ]; then
+            if [ -f "scripts/extract_football_summary.js" ] || compgen -G "data/*-matches.json" > /dev/null; then
               VERTICAL="footballtally"
+            elif [ -f "config/policing-contract.json" ] && [ ! -f "config/governance-contract.json" ]; then
+              VERTICAL="policingintel"
             else
               VERTICAL="governancescore"
             fi
