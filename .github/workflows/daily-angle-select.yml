@@ -34,6 +34,10 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Install dependencies
+        working-directory: ${{ github.workspace }}
+        run: npm install
+
       - name: Resolve vertical, data source, and initial UTC run date
         id: run_meta
         run: |
