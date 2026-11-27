@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T16:53:02.931Z",
+  "updated_at": "2026-11-27T15:59:51.689Z",
   "leagues": {
     "pl": [
       {
@@ -732,102 +732,25 @@
     ],
     "bsa": [
       {
-        "home": "Palmeiras",
-        "away": "Flamengo",
-        "home_score": 1,
-        "away_score": 1,
-        "week": 36,
-        "h1_home": 1,
-        "h1_away": 0,
-        "h2_home": 0,
-        "h2_away": 1
-      },
-      {
-        "home": "Bahia",
-        "away": "Coritiba",
-        "home_score": 0,
-        "away_score": 1,
-        "week": 36,
-        "h1_home": 0,
-        "h1_away": 0,
-        "h2_home": 0,
-        "h2_away": 1
-      },
-      {
         "home": "Chapecoense",
-        "away": "Cruzeiro",
-        "home_score": 1,
-        "away_score": 2,
-        "week": 36,
-        "h1_home": 0,
-        "h1_away": 0,
-        "h2_home": 1,
-        "h2_away": 2
-      },
-      {
-        "home": "Paranaense",
-        "away": "Clube do Remo",
-        "home_score": 4,
-        "away_score": 2,
-        "week": 36,
+        "away": "Palmeiras",
+        "home_score": 3,
+        "away_score": 0,
+        "week": 37,
         "h1_home": 2,
         "h1_away": 0,
-        "h2_home": 2,
-        "h2_away": 2
-      },
-      {
-        "home": "Fluminense",
-        "away": "Mirassol",
-        "home_score": 1,
-        "away_score": 0,
-        "week": 36,
-        "h1_home": 0,
-        "h1_away": 0,
         "h2_home": 1,
         "h2_away": 0
       },
       {
-        "home": "Bragantino",
-        "away": "Vasco da Gama",
-        "home_score": 1,
-        "away_score": 0,
-        "week": 36,
-        "h1_home": 0,
-        "h1_away": 0,
-        "h2_home": 1,
-        "h2_away": 0
-      },
-      {
-        "home": "Internacional",
-        "away": "Vitória",
-        "home_score": 2,
-        "away_score": 5,
-        "week": 36,
-        "h1_home": 1,
-        "h1_away": 2,
-        "h2_home": 1,
-        "h2_away": 3
-      },
-      {
-        "home": "Botafogo",
-        "away": "São Paulo",
-        "home_score": 1,
+        "home": "São Paulo",
+        "away": "Clube do Remo",
+        "home_score": 3,
         "away_score": 1,
-        "week": 36,
-        "h1_home": 0,
-        "h1_away": 1,
-        "h2_home": 1,
-        "h2_away": 0
-      },
-      {
-        "home": "Santos",
-        "away": "Grêmio",
-        "home_score": 0,
-        "away_score": 2,
-        "week": 36,
-        "h1_home": 0,
-        "h1_away": 1,
-        "h2_home": 0,
+        "week": 37,
+        "h1_home": 1,
+        "h1_away": 0,
+        "h2_home": 2,
         "h2_away": 1
       }
     ]
