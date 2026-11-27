@@ -48,6 +48,14 @@
       "angle_name": "",
       "family": "tier_shifts",
       "opening_class": "tail_first"
+    },
+    {
+      "run_date_utc": "2026-11-29",
+      "vertical": "footballtally",
+      "angle_id": "10",
+      "angle_name": "",
+      "family": "execution_momentum",
+      "opening_class": "entity_first"
     }
   ]
 }
