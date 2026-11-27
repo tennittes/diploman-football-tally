@@ -69,11 +69,27 @@ jobs:
 
       - name: 1. Extract daily metrics summary
         id: extract_meta
+        working-directory: ${{ github.workspace }}
         run: |
           VERTICAL="${{ steps.run_meta.outputs.vertical }}"
           SUMMARY_PATH="state/${VERTICAL}/daily_metrics_summary.json"
+          SCRIPT_PATH="scripts/extract_summary_from_master.js"
 
-          node scripts/extract_summary_from_master.js \
+          if [ "$VERTICAL" = "footballtally" ]; then
+            if [ -f "scripts/extract_football_summary.js" ]; then
+              SCRIPT_PATH="scripts/extract_football_summary.js"
+            elif [ -f "diploman-football-tally/scripts/extract_football_summary.js" ]; then
+              SCRIPT_PATH="diploman-football-tally/scripts/extract_football_summary.js"
+            fi
+          fi
+
+          if [ ! -f "$SCRIPT_PATH" ]; then
+            echo "ERROR: Extractor script not found at '$SCRIPT_PATH' in $(pwd)"
+            ls -la scripts || true
+            exit 1
+          fi
+
+          node "$SCRIPT_PATH" \
             --vertical "$VERTICAL" \
             --date "${{ steps.run_meta.outputs.run_date_utc }}" \
             --master "${{ steps.run_meta.outputs.master_file }}" \
@@ -94,6 +110,7 @@ jobs:
           echo "effective_date=$EFFECTIVE_DATE" >> "$GITHUB_OUTPUT"
 
       - name: 2. Validate incoming daily metrics
+        working-directory: ${{ github.workspace }}
         run: >
           node scripts/validate_inputs.js
           --vertical "${{ steps.run_meta.outputs.vertical }}"
@@ -101,6 +118,7 @@ jobs:
           --metrics "state/${{ steps.run_meta.outputs.vertical }}/daily_metrics_summary.json"
 
       - name: 3. Select daily headline angle (25-Angle Matrix)
+        working-directory: ${{ github.workspace }}
         run: >
           node scripts/select_angle.js
           --vertical "${{ steps.run_meta.outputs.vertical }}"
@@ -111,6 +129,7 @@ jobs:
           --out "state/${{ steps.run_meta.outputs.vertical }}/latest_selection.json"
 
       - name: 4. Queue scored brief for Diploman Times (news-queue.json)
+        working-directory: ${{ github.workspace }}
         run: >
           node scripts/queue_scored_brief.js
           --vertical "${{ steps.run_meta.outputs.vertical }}"
@@ -119,6 +138,7 @@ jobs:
           --queue "news-queue.json"
 
       - name: Commit updated summary, angle state, and news-queue.json
+        working-directory: ${{ github.workspace }}
         run: |
           VERTICAL="${{ steps.run_meta.outputs.vertical }}"
           RUN_DATE="${{ steps.extract_meta.outputs.effective_date }}"
