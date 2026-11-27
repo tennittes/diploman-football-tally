@@ -109,13 +109,12 @@ function promoteDueScheduledItems(items, nowIso = new Date().toISOString()) {
    =========================== */
 function escapeXml(str) {
   return String(str ?? "")
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">")
-    .replace(/"/g, """)
-    .replace(/'/g, "'");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
-
 function truncateLabel(str, maxChars) {
   const clean = String(str ?? "").trim();
   if (clean.length <= maxChars) return clean;
