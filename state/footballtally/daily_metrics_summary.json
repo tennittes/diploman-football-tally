@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-29",
-  "latest_match_date_utc": "2026-11-29",
+  "run_date_utc": "2026-11-28",
+  "latest_match_date_utc": "2026-11-28",
   "vertical": "footballtally",
   "tracked_league_count": 8,
   "active_league_code": "PL",

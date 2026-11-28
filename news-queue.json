@@ -2,6 +2,54 @@
   "newsReports": [
     {
       "type": "scored_brief",
+      "id": "scored-ftb-2026-11-28",
+      "run_date_utc": "2026-11-28",
+      "status": "queued",
+      "published": false,
+      "publish_after_utc": "2026-11-28T00:00:00.000Z",
+      "prepared_at_utc": "2026-11-28T08:41:42.612Z",
+      "queued_at_utc": "2026-11-28T08:41:42.612Z",
+      "target_url": "https://www.diplomantimes.com",
+      "vertical": "footballtally",
+      "source_domain": "https://footballtally.diplomantimes.com/",
+      "angle_id": "07",
+      "angle_name": "",
+      "angle_family": "tier_shifts",
+      "opening_class": "tail_first",
+      "headline_skeleton": "Lower-Tier Pressure Persists as [Entity] Stays Ahead",
+      "lede_rule": "Sentence 1 contrasts frontrunners with lower-tier lag; Sentence 2 summarizes the table split.",
+      "weak_points_context": {
+        "has_divergence": true,
+        "top_club": "Arsenal",
+        "max_weak_points": 14,
+        "lowest_club": "Crystal Palace",
+        "min_weak_points": 3
+      },
+      "title": "Why Arsenal Carries +14 Weak Points Gap in Premier League Standings Split",
+      "summary": "Arsenal posts a +14 Weak Points gap (28 STD vs. 14 DFT) across Premier League fixtures.",
+      "social_excerpt": "Why Arsenal Carries +14 Weak Points Gap in Premier League Standings Split\n\nArsenal posts a +14 Weak Points gap (28 STD vs. 14 DFT) across Premier League fixtures.\n\nRead the full multi-league telemetry brief: https://www.diplomantimes.com",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Football Tally",
+        "PL",
+        "Angle 07"
+      ],
+      "featured_image": {
+        "src": "https://raw.githubusercontent.com/tennittes/diploman-football-tally/main/assets/cards/ftb-2026-11-28.png",
+        "alt": "Premier League Football Tally Telemetry — 2026-11-28",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "A +14 Weak Points differential separates Arsenal's full-time total (28 STD pts) from its two-half tally (14 DFT pts) in the Premier League (PL) as of 2026-11-28. Meanwhile, Brighton Hove tops the pure two-half table on 15 points.",
+      "story_body": [
+        "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (15 pts, +7 WP), 2. Arsenal (14 pts, +14 WP), and 3. Bournemouth (14 pts, +4 WP). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 1 points.",
+        "The standard full-time standings present a contrasting picture, led by Arsenal (28 pts, +14 WP), Brighton Hove (22 pts, +7 WP), and Man City (22 pts, +10 WP). Arsenal stays 6 points clear of Brighton Hove in full-time points, and Weak Points (STD minus DFT) show the largest positive cushions on Arsenal (+14 WP: 28 STD vs 14 DFT), Man City (+10 WP: 22 STD vs 12 DFT), and Leeds United (+10 WP: 17 STD vs 7 DFT) while Crystal Palace posts the lowest Weak Points tally at +3 WP, reflecting points collected from draws or single-half wins.",
+        "At the opposite end of the Premier League two-half table, Man United (2 pts, +6 WP), Sunderland (2 pts, +7 WP), and Nottingham (3 pts, +6 WP) sit under sustained points pressure, while Crystal Palace (7 pts), Man United (8 pts), and Sunderland (9 pts) occupy the lower full-time spots.",
+        "Across other tracked top-flight competitions on 2026-11-28, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Barça on 28 two-half pts; Barça on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
+      ]
+    },
+    {
+      "type": "scored_brief",
       "id": "scored-ftb-2026-11-27",
       "run_date_utc": "2026-11-27",
       "published": true,
