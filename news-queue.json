@@ -4,8 +4,8 @@
       "type": "scored_brief",
       "id": "scored-ftb-2026-11-28",
       "run_date_utc": "2026-11-28",
-      "status": "queued",
-      "published": false,
+      "status": "published",
+      "published": true,
       "publish_after_utc": "2026-11-28T00:00:00.000Z",
       "prepared_at_utc": "2026-11-28T08:41:42.612Z",
       "queued_at_utc": "2026-11-28T08:41:42.612Z",
@@ -27,7 +27,7 @@
       },
       "title": "Why Arsenal Carries +14 Weak Points Gap in Premier League Standings Split",
       "summary": "Arsenal posts a +14 Weak Points gap (28 STD vs. 14 DFT) across Premier League fixtures.",
-      "social_excerpt": "Why Arsenal Carries +14 Weak Points Gap in Premier League Standings Split\n\nArsenal posts a +14 Weak Points gap (28 STD vs. 14 DFT) across Premier League fixtures.\n\nRead the full multi-league telemetry brief: https://www.diplomantimes.com",
+      "social_excerpt": "Why Arsenal Carries +14 Weak Points Gap in Premier League Standings Split\n\nArsenal posts a +14 Weak Points gap (28 STD vs. 14 DFT) across Premier League fixtures.\n\nRead the full multi-league telemetry brief: https://www.diplomantimes.com/2026/11/why-arsenal-carries-14-weak-points-gap.html",
       "labels": [
         "News Report",
         "Diploman Times",
@@ -37,7 +37,7 @@
       ],
       "featured_image": {
         "src": "https://raw.githubusercontent.com/tennittes/diploman-football-tally/main/assets/cards/ftb-2026-11-28.png",
-        "alt": "Premier League Football Tally Telemetry — 2026-11-28",
+        "alt": "Premier League Football Tally Telemetry \u2014 2026-11-28",
         "target_url": "https://www.diplomantimes.com"
       },
       "lead_narrative": "A +14 Weak Points differential separates Arsenal's full-time total (28 STD pts) from its two-half tally (14 DFT pts) in the Premier League (PL) as of 2026-11-28. Meanwhile, Brighton Hove tops the pure two-half table on 15 points.",
@@ -45,8 +45,14 @@
         "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (15 pts, +7 WP), 2. Arsenal (14 pts, +14 WP), and 3. Bournemouth (14 pts, +4 WP). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 1 points.",
         "The standard full-time standings present a contrasting picture, led by Arsenal (28 pts, +14 WP), Brighton Hove (22 pts, +7 WP), and Man City (22 pts, +10 WP). Arsenal stays 6 points clear of Brighton Hove in full-time points, and Weak Points (STD minus DFT) show the largest positive cushions on Arsenal (+14 WP: 28 STD vs 14 DFT), Man City (+10 WP: 22 STD vs 12 DFT), and Leeds United (+10 WP: 17 STD vs 7 DFT) while Crystal Palace posts the lowest Weak Points tally at +3 WP, reflecting points collected from draws or single-half wins.",
         "At the opposite end of the Premier League two-half table, Man United (2 pts, +6 WP), Sunderland (2 pts, +7 WP), and Nottingham (3 pts, +6 WP) sit under sustained points pressure, while Crystal Palace (7 pts), Man United (8 pts), and Sunderland (9 pts) occupy the lower full-time spots.",
-        "Across other tracked top-flight competitions on 2026-11-28, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Barça on 28 two-half pts; Barça on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
-      ]
+        "Across other tracked top-flight competitions on 2026-11-28, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Bar\u00e7a on 28 two-half pts; Bar\u00e7a on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
+      ],
+      "published_utc_date": "2026-11-28",
+      "published_at_utc": "2026-11-28T08:57:21Z",
+      "blogger_draft": false,
+      "blogger_post_id": "4857449719217720563",
+      "url": "https://www.diplomantimes.com/2026/11/why-arsenal-carries-14-weak-points-gap.html",
+      "permalink": "https://www.diplomantimes.com/2026/11/why-arsenal-carries-14-weak-points-gap.html"
     },
     {
       "type": "scored_brief",
@@ -81,7 +87,7 @@
       ],
       "featured_image": {
         "src": "https://raw.githubusercontent.com/tennittes/diploman-football-tally/main/assets/cards/ftb-2026-11-27.png",
-        "alt": "Premier League Football Tally Telemetry — 2026-11-27",
+        "alt": "Premier League Football Tally Telemetry \u2014 2026-11-27",
         "target_url": "https://www.diplomantimes.com"
       },
       "lead_narrative": "Brighton Hove surges to the summit of the Premier League (PL) two-half standings with 15 DFT points as of 2026-11-27, holding a 1-point edge over Arsenal (14 points). Meanwhile, Arsenal leads the standard full-time table on 28 points.",
@@ -89,7 +95,7 @@
         "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (15 pts, +7 WP), 2. Arsenal (14 pts, +14 WP), and 3. Bournemouth (14 pts, +4 WP). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 1 points.",
         "The standard full-time standings present a contrasting picture, led by Arsenal (28 pts, +14 WP), Brighton Hove (22 pts, +7 WP), and Man City (22 pts, +10 WP). Arsenal stays 6 points clear of Brighton Hove in full-time points, and Weak Points (STD minus DFT) show the largest positive cushions on Arsenal (+14 WP: 28 STD vs 14 DFT), Man City (+10 WP: 22 STD vs 12 DFT), and Leeds United (+10 WP: 17 STD vs 7 DFT) while Crystal Palace posts the lowest Weak Points tally at +3 WP, reflecting points collected from draws or single-half wins.",
         "At the opposite end of the Premier League two-half table, Man United (2 pts, +6 WP), Sunderland (2 pts, +7 WP), and Nottingham (3 pts, +6 WP) sit under sustained points pressure, while Crystal Palace (7 pts), Man United (8 pts), and Sunderland (9 pts) occupy the lower full-time spots.",
-        "Across other tracked top-flight competitions on 2026-11-27, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Barça on 28 two-half pts; Barça on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
+        "Across other tracked top-flight competitions on 2026-11-27, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Bar\u00e7a on 28 two-half pts; Bar\u00e7a on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
       ],
       "queued_at_utc": "2026-11-27T06:03:52.100Z",
       "status": "published",
@@ -133,7 +139,7 @@
       ],
       "featured_image": {
         "src": "https://raw.githubusercontent.com/tennittes/diploman-football-tally/main/assets/cards/ftb-2026-11-26.svg",
-        "alt": "Premier League Football Tally Telemetry — 2026-11-26",
+        "alt": "Premier League Football Tally Telemetry \u2014 2026-11-26",
         "target_url": "https://www.diplomantimes.com"
       },
       "lead_narrative": "Sustained two-half discipline keeps Brighton Hove atop the Premier League (PL) DFT standings with 15 points as of 2026-11-26. On the Weak Points index, Crystal Palace registers the lowest differential at +3 WP, reflecting tight alignment between half control and final results.",
@@ -141,7 +147,7 @@
         "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (15 pts, +7 WP), 2. Arsenal (14 pts, +14 WP), and 3. Bournemouth (14 pts, +4 WP). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 1 points.",
         "The standard full-time standings present a contrasting picture, led by Arsenal (28 pts, +14 WP), Brighton Hove (22 pts, +7 WP), and Man City (22 pts, +10 WP). Arsenal stays 6 points clear of Brighton Hove in full-time points, and Weak Points (STD minus DFT) show the largest positive cushions on Arsenal (+14 WP: 28 STD vs 14 DFT), Man City (+10 WP: 22 STD vs 12 DFT), and Leeds United (+10 WP: 17 STD vs 7 DFT) while Crystal Palace posts the lowest Weak Points tally at +3 WP, reflecting points collected from draws or single-half wins.",
         "At the opposite end of the Premier League two-half table, Man United (2 pts, +6 WP), Sunderland (2 pts, +7 WP), and Nottingham (3 pts, +6 WP) sit under sustained points pressure, while Crystal Palace (7 pts), Man United (8 pts), and Sunderland (9 pts) occupy the lower full-time spots.",
-        "Across other tracked top-flight competitions on 2026-11-26, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Barça on 28 two-half pts; Barça on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
+        "Across other tracked top-flight competitions on 2026-11-26, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Bar\u00e7a on 28 two-half pts; Bar\u00e7a on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
       ],
       "queued_at_utc": "2026-11-26T08:07:04.197Z",
       "published_utc_date": "2026-11-26",
@@ -182,7 +188,7 @@
       ],
       "featured_image": {
         "src": "https://raw.githubusercontent.com/tennittes/diploman-football-tally/main/assets/cards/ftb-2026-11-25.svg",
-        "alt": "Premier League Football Tally Telemetry — 2026-11-25",
+        "alt": "Premier League Football Tally Telemetry \u2014 2026-11-25",
         "target_url": "https://www.diplomantimes.com"
       },
       "lead_narrative": "Brighton Hove claims first place in the Premier League (PL) two-half standings with 15 DFT points on 2026-11-25, even as Arsenal holds the conventional full-time lead on 28 points. The split underscores how two-half dominance differs from single-half or late-goal full-time wins.",
@@ -190,7 +196,7 @@
         "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (15 pts, +7 WP), 2. Arsenal (14 pts, +14 WP), and 3. Bournemouth (14 pts, +4 WP). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 1 points.",
         "The standard full-time standings present a contrasting picture, led by Arsenal (28 pts, +14 WP), Brighton Hove (22 pts, +7 WP), and Man City (22 pts, +10 WP). Arsenal stays 6 points clear of Brighton Hove in full-time points, and Weak Points (STD minus DFT) show the largest positive cushions on Arsenal (+14 WP: 28 STD vs 14 DFT), Man City (+10 WP: 22 STD vs 12 DFT), and Leeds United (+10 WP: 17 STD vs 7 DFT) while Crystal Palace posts the lowest Weak Points tally at +3 WP, reflecting points collected from draws or single-half wins.",
         "At the opposite end of the Premier League two-half table, Man United (2 pts, +6 WP), Sunderland (2 pts, +7 WP), and Nottingham (3 pts, +6 WP) sit under sustained points pressure, while Crystal Palace (7 pts), Man United (8 pts), and Sunderland (9 pts) occupy the lower full-time spots.",
-        "Across other tracked top-flight competitions on 2026-11-25, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Barça on 28 two-half pts; Barça on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
+        "Across other tracked top-flight competitions on 2026-11-25, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Bar\u00e7a on 28 two-half pts; Bar\u00e7a on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
       ],
       "queued_at_utc": "2026-11-25T09:36:08.543Z",
       "published_utc_date": "2026-11-25",
@@ -231,7 +237,7 @@
       ],
       "featured_image": {
         "src": "https://raw.githubusercontent.com/tennittes/diploman-football-tally/main/assets/cards/ftb-2026-11-24.svg",
-        "alt": "Premier League Football Tally Telemetry — 2026-11-24",
+        "alt": "Premier League Football Tally Telemetry \u2014 2026-11-24",
         "target_url": "https://www.diplomantimes.com"
       },
       "lead_narrative": "Two-half point accumulation remains stalled at the foot of the Premier League (PL) table on 2026-11-24, with Man United (2 pts) and Sunderland (2 pts) unable to close the gap. At the top, Brighton Hove continues to pace the division on 15 DFT points.",
@@ -239,7 +245,7 @@
         "At the top of the Premier League two-half standings, the leading trio sits at 1. Brighton Hove (15 pts, +7 WP), 2. Arsenal (14 pts, +14 WP), and 3. Bournemouth (14 pts, +4 WP). Brighton Hove holds a 1-point cushion over Arsenal and leads third-placed Bournemouth by 1 points.",
         "The standard full-time standings present a contrasting picture, led by Arsenal (28 pts, +14 WP), Brighton Hove (22 pts, +7 WP), and Man City (22 pts, +10 WP). Arsenal stays 6 points clear of Brighton Hove in full-time points, and Weak Points (STD minus DFT) show the largest positive cushions on Arsenal (+14 WP: 28 STD vs 14 DFT), Man City (+10 WP: 22 STD vs 12 DFT), and Leeds United (+10 WP: 17 STD vs 7 DFT) while Crystal Palace posts the lowest Weak Points tally at +3 WP, reflecting points collected from draws or single-half wins.",
         "At the opposite end of the Premier League two-half table, Man United (2 pts, +6 WP), Sunderland (2 pts, +7 WP), and Nottingham (3 pts, +6 WP) sit under sustained points pressure, while Crystal Palace (7 pts), Man United (8 pts), and Sunderland (9 pts) occupy the lower full-time spots.",
-        "Across other tracked top-flight competitions on 2026-11-24, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Barça on 28 two-half pts; Barça on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
+        "Across other tracked top-flight competitions on 2026-11-24, table leaders include Bundesliga (RB Leipzig on 17 two-half pts; Dortmund on 24 full-time pts; max WP: Dortmund +14), Campeonato Brasileiro Serie A (Flamengo on 53 two-half pts; Flamengo on 80 full-time pts; max WP: Cruzeiro +39), Eredivisie (PSV on 27 two-half pts; PSV on 29 full-time pts; max WP: Sittard +14), Ligue 1 (PSG on 15 two-half pts; PSG on 26 full-time pts; max WP: Paris FC +13), La Liga (Bar\u00e7a on 28 two-half pts; Bar\u00e7a on 36 full-time pts; max WP: Real Madrid +16), Primeira Liga (SL Benfica on 18 two-half pts; Porto on 33 full-time pts; max WP: Porto +16), and Serie A (Roma on 23 two-half pts; Lazio on 32 full-time pts; max WP: Inter +18)."
       ],
       "queued_at_utc": "2026-11-24T15:42:01.390Z",
       "published_utc_date": "2026-11-24",
